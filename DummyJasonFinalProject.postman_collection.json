@@ -1,0 +1,2033 @@
+{
+  "info": {
+    "_postman_id": "b6c440b7-487c-424e-aa43-59643817d8b9",
+    "name": "DummyJasonFinalProject",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37997805"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get /products (list)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"200 Status Code\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "const productsResponseArray = pm.response.json().products;\r",
+                  "pm.test(\"Products property is json array\", function(){\r",
+                  "    pm.expect(productsResponseArray).to.be.an('array');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response is json obj\", function(){\r",
+                  "    pm.expect(pm.response.json()).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Products array length > 0\", function(){\r",
+                  "    //pm.expect(productsResponseArray).to.be.not.empty;\r",
+                  "    pm.expect(productsResponseArray.length).to.be.above(0);\r",
+                  "    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"All products have required keys\", function(){\r",
+                  "   // slice(0 inclusive, 6 exclusive), to get part of array\r",
+                  "    productsResponseArray.slice(0,6).forEach(\r",
+                  "        (v,k)=>{\r",
+                  "            pm.expect(productsResponseArray[k]).to.include.keys('id','title','price');\r",
+                  "    });\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ]
+            },
+            "description": "This request sends **GET** to [https://dummyjson.com](https://dummyjson.com)/products\n\n**Endpoint:** `GET` [https://dummyjson.com](https://dummyjson.com)/products\n\n**What it does**\n\n- Fetches the full list of products from DummyJSON.\n    \n\n**Inputs**\n\n- No request body.\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON array** of product objects.\n    \n- Content-Type should be **applucation/jason**\n    \n- Each product should include: `id`, `title`, `price`."
+          },
+          "response": []
+        },
+        {
+          "name": "Get /products /id (single product)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Valid required keys', function(){\r",
+                  "    pm.expect(resp).to.include.keys('id','title','price');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Valid key Types', function(){\r",
+                  "    pm.expect(resp.id).to.be.an('number'); \r",
+                  "    pm.expect(resp.title).to.be.an('string');    \r",
+                  "    pm.expect(resp.price).to.be.an('number');  \r",
+                  "});\r",
+                  "\r",
+                  "const ExpectedID = parseInt(pm.environment.get('validID'));\r",
+                  "pm.test('ReturnedID = RequestedID', function(){\r",
+                  "pm.expect(resp.id).to.be.equal(ExpectedID);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{validID}}"
+              ]
+            },
+            "description": "This request sends **GET** to {{[https://dummyjson.com}}](https://dummyjson.com)/products/{{validID}}.\n\n**Endpoint:** `GET` {{[https://dummyjson.com}}](https://dummyjson.com)/products/{{validID}}.\n\n**What it does**\n\n- Fetches one product by its ID using a **path parameter**.\n    \n\n**Inputs**\n\n- Path param: `validID.`\n    \n- No request body.\n    \n\n**Expected behavior**\n\n- Status should be **200 OK** for valid IDs.\n    \n- Content-Type should be **application/json.**\n    \n- Response should be a **JSON object.**\n    \n- Response should contain the following keys:\n    \n    - `id`\n        \n    - `title`\n        \n    - `price`\n        \n- Data types should be valid:\n    \n    - `id` → number\n        \n    - `title`→ array\n        \n    - `price`→ number\n        \n- Returned `id` should match the sent `validID` in URL."
+          },
+          "response": []
+        },
+        {
+          "name": "Get /products /id (invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('404 Status Code', function(){\r",
+                  "    pm.response.to.have.status(404);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "pm.test('Product Not Found', function(){\r",
+                  "    pm.expect(resp).to.have.property('message','Product with id \\'' +InvalidID+ '\\' not found');\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/{{invalidID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{invalidID}}"
+              ]
+            },
+            "description": "This request sends **GET** to [https://dummyjson.com](https://dummyjson.com)/products/{{invalidID}}\n\n**Endpoint:** GET [https://dummyjson.com/products/{{invalidID}}](https://null)\n\n**What it does:**\n\nAttempts to fetch a product by an invalid ID from DummyJSON.\n\n**Inputs:**\n\nNo request body.\n\nPath parameter: `invalidID` – an ID that does not exist in the database.\n\n**Expected behavior:**\n\n- Status should be **404 Not Found**.\n    \n- Response should be a JSON object containing a `message` property.\n    \n- `message` should be: `\"Product with id '' not found\"`\n    \n- Content-Type should be `application/json`."
+          },
+          "response": []
+        },
+        {
+          "name": "Get /products/ search",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test('Returned Response is an Object', function() {\r",
+                  "    pm.expect(resp).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Products Array is Not Empty', function(){\r",
+                  "    pm.expect(resp.products).to.be.an('array');\r",
+                  "    pm.expect(resp.products.length).to.be.above(0);\r",
+                  "});\r",
+                  "\r",
+                  "const product = resp.products;\r",
+                  "const searchWord =  pm.collectionVariables.get('searchProduct');\r",
+                  "pm.test('Descriptione has the Searched Word', function(){\r",
+                  "   product.forEach(\r",
+                  "        (v,k)=>{\r",
+                  "            pm.expect(v.description).to.include(searchWord);\r",
+                  "    });\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/search?q={{searchProduct}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{searchProduct}}"
+                }
+              ]
+            },
+            "description": "This request sends **GET** to [https://dummyjson.com](https://dummyjson.com)/[search?q={{searchProduct}}](https://null)\n\n**Endpoint:** GET [https://dummyjson.com/products/search?q={{searchProduct}}](https://null)\n\n**What it does:**\n\nSearches for products on DummyJSON that match the `searchProduct` query.\n\n**Inputs:**\n\nNo request body.\n\nQuery parameter: `q={{searchProduct}}` – the keyword to search in product descriptions.\n\n**Expected behavior:**\n\n- Status should be **200 OK**.\n    \n- Response should be a JSON object.\n    \n- Content-Type should be `application/json`.\n    \n- Response object should contain a `products` array.\n    \n- `products` array should not be empty.\n    \n- Each product in `products` should have a `description` that includes the searched word (`searchProduct`)."
+          },
+          "response": []
+        },
+        {
+          "name": "Get /products/ search (Invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test('Returned Response is an object', function() {\r",
+                  "    pm.expect(resp).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"content-type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "// returns an empty result set\r",
+                  "pm.test('Total is 0 and Products array is empty', function(){\r",
+                  "    pm.expect(resp.products).to.be.empty;\r",
+                  "    pm.expect(resp.total).to.be.equal(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products/search?q={{invalidSearch}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{invalidSearch}}"
+                }
+              ]
+            },
+            "description": "This request sends **GET** to [https://dummyjson.com/products/search?q={{invalidSearch}}](https://null)\n\n**Endpoint:** GET [https://dummyjson.com/products/search?q={{invalidSearch}}](https://null)\n\n**What it does:**\n\nAttempts to search for products on DummyJSON using a keyword that does not match any product.\n\n**Inputs:**\n\nNo request body.\n\nQuery parameter: `q={{invalidSearch}}` – a keyword that is not present in any product description.\n\n**Expected behavior:**\n\n- Status should be **200 OK**.\n    \n- Response should be a JSON object.\n    \n- Content-Type should be `application/json`.\n    \n- Returned `total` should be `0`.\n    \n- `products` array should be empty."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /products /Add",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.collectionVariables.set(\"NewProductID\",195);\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"NewProductTitle\", 'swarovski swan bracelet');\r",
+                  "\r",
+                  "pm.collectionVariables.set(\"NewProductPrice\", 29.99);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('201 Created Status Code', function(){\r",
+                  "    pm.response.to.have.status(201);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Valid required keys', function(){\r",
+                  "    pm.expect(resp).to.include.keys('id','title','price');    \r",
+                  "});\r",
+                  "\r",
+                  "const ExpectedID = parseInt(pm.collectionVariables.get('NewProductID'));\r",
+                  "const ExpectedTitle = pm.collectionVariables.get('NewProductTitle');\r",
+                  "const ExpectedPrice= pm.collectionVariables.get('NewProductPrice');\r",
+                  "\r",
+                  "pm.test('Returned Fields Match Input', function(){\r",
+                  "pm.expect(resp.id).to.be.equal(ExpectedID);\r",
+                  "pm.expect(resp.title).to.be.equal(ExpectedTitle);\r",
+                  "pm.expect(resp.price).to.be.equal(ExpectedPrice);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"id\": {{NewProductID}},\r\n    \"title\": \"{{NewProductTitle}}\",\r\n    \"price\": {{NewProductPrice}}\r\n}\r\n    \r\n  ",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "add"
+              ]
+            },
+            "description": "**Endpoint:** POST [https://dummyjson.com/products/add](https://null)\n\n**What it does:**\n\nAdds a new product to DummyJSON with the specified details.\n\n**Inputs:**\n\nRequest body (JSON):\n\n{  \n\"id\": {{NewProductID}},  \n\"title\": \"{{NewProductTitle}}\",  \n\"price\": {{NewProductPrice}}  \n}\n\n- `id` – numeric, unique ID for the product.\n    \n- `title` – string, product title.\n    \n- `price` – numeric, product price.\n    \n\n**Expected behavior:**\n\n- Status should be **201 Created**.\n    \n- Response should be a `JSON` object.\n    \n- Response should include the keys: `id`, `title`, `price`.\n    \n- Response fields should match the input values exactly:\n    \n    - `id` = `NewProductID`\n        \n    - `title` = `NewProductTitle`\n        \n    - `price` = `NewProductPrice`"
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /products /id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"content-type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "const ExpectedTitle = pm.collectionVariables.get('updatedTitle');\r",
+                  "pm.test('Updated Field Reflects New Value', function(){\r",
+                  "pm.expect(resp.title).to.be.equal(ExpectedTitle);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "pm.collectionVariables.set(\"updatedTitle\", 'Chicken Nuggets');\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n \"title\": \"{{updatedTitle}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{validID}}"
+              ]
+            },
+            "description": "**Endpoint:** PUT [https://dummyjson.com/products/{{validID}}](https://null)\n\n**What it does:**\n\nUpdates the description of an existing product on DummyJSON.\n\n**Inputs:**\n\nRequest body (JSON):\n\n{  \n\"title\": \"{{updatedTitle}}\"  \n}\n\n- title – string, the new title for the product.\n    \n- Path parameter: `validID` – the ID of the product to update.\n    \n\n**Expected behavior:**\n\n- Status should be **200 OK**.\n    \n- Response should be a JSON object.\n    \n- Content-Type should be `application/json`.\n    \n- The `title` field in the response should match the updated value (`updatedTitle`)."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /products /id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"content-type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Product is Deleted\", function() {\r",
+                  "    pm.expect(resp).to.have.property(\"isDeleted\", true);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{validID}}"
+              ]
+            },
+            "description": "**Endpoint:** DELETE [https://dummyjson.com/products/{{validID}}](https://null)\n\n**What it does:**\n\nDeletes an existing product from DummyJSON by its ID.\n\n**Inputs:**\n\nNo request body.\n\nPath parameter: `validID` – the ID of the product to delete.\n\n**Expected behavior:**\n\n- Status should be **200 OK**.\n    \n- Response should be a JSON object.\n    \n- Response should include a property `isDeleted` with value `true`.\n    \n- Content-Type should be `application/json`"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /products /id (Invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('404 Status Code', function(){\r",
+                  "    pm.response.to.have.status(404);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"content-type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "pm.test('Product Not Found', function(){\r",
+                  "    pm.expect(resp).to.have.property('message','Product with id \\'' +InvalidID+ '\\' not found');\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/{{invalidID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products",
+                "{{invalidID}}"
+              ]
+            },
+            "description": "**Endpoint:** DELETE [https://dummyjson.com/products/{{invalidID}}](https://null)\n\n**What it does:**\n\nAttempts to delete a product from DummyJSON using an ID that does not exist.\n\n**Inputs:**\n\nNo request body.\n\nPath parameter: `invalidID` – an ID that does not exist in the database.\n\n**Expected behavior:**\n\n- Status should be **404 Not Found**.\n    \n- Response should be a JSON object.\n    \n- Response should include a `message` property with the value:  \n    `\"Product with id '{{invalidID}}' not found\"`\n    \n- Content-Type should be `application/json`."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Carts",
+      "item": [
+        {
+          "name": "Get /carts (list)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"200 Status Code\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "const cartsResponseArray = pm.response.json().carts;\r",
+                  "pm.test(\"Carts property is json array\", function(){\r",
+                  "    pm.expect(cartsResponseArray).to.be.an('array');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Returned response is json obj\", function(){\r",
+                  "    pm.expect(pm.response.json()).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Carts array length > 0\", function(){\r",
+                  "    //pm.expect(cartsResponseArray).to.be.not.empty;\r",
+                  "    pm.expect(cartsResponseArray.length).to.be.above(0);\r",
+                  "    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"All carts have required keys\", function(){\r",
+                  "   // slice(0 inclusive, 6 exclusive), to get part of array\r",
+                  "    cartsResponseArray.slice(0,6).forEach(\r",
+                  "        (v,k)=>{\r",
+                  "            pm.expect(cartsResponseArray[k]).to.include.keys('id','products','total', 'userId');\r",
+                  "    });\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/carts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts"
+              ]
+            },
+            "description": "This request sends **GET** to {{[https://dummyjson.com}}](https://dummyjson.com)/carts\n\n**Endpoint:** `GET {{https://dummyjson.com}}/carts`\n\n**What it does**\n\nFetches a list of all carts available in the system.\n\n**Inputs**\n\n- No path parameters\n    \n- No request body\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be in **application/json** format.\n    \n- Response should be a **JSON object**.\n    \n- **carts** should be a JSON array.\n    \n- The carts `array length` should be greater than `0`.\n    \n- Each cart object should contain the following keys:\n    \n    - `id`\n        \n    - `products`\n        \n    - `total`\n        \n    - `userId`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get /carts /id (single cart)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"200 Status Code\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Valid required keys', function(){\r",
+                  "    pm.expect(resp).to.include.keys('id','products','total', 'userId');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Valid key Types', function(){\r",
+                  "    pm.expect(resp.id).to.be.an('number'); \r",
+                  "    pm.expect(resp.products).to.be.an('array');    \r",
+                  "    pm.expect(resp.total).to.be.an('number');  \r",
+                  "    pm.expect(resp.userId).to.be.an('number'); \r",
+                  "});\r",
+                  "\r",
+                  "const ExpectedID = parseInt(pm.environment.get('validID'));\r",
+                  "pm.test('ReturnedID = RequestedID', function(){\r",
+                  "pm.expect(resp.id).to.be.equal(ExpectedID);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/carts/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "{{validID}}"
+              ]
+            },
+            "description": "This request sends **GET** to `{`[https://dummyjson.com](https://dummyjson.com)`}}/carts/{{validID}}`.\n\n**Endpoint:** `GET {{`{[https://dummyjson.com](https://dummyjson.com)`}}/carts/{{validID}}`\n\n**What it does**\n\nFetches a single cart by its ID using a path parameter.\n\n**Inputs**\n\n- **Path param:** `validID`\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be in **application/json** format.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain the following keys:\n    \n    - `id`\n        \n    - `products`\n        \n    - `total`\n        \n    - `userId`\n        \n- Data types should be valid:\n    \n    - `id` → number\n        \n    - `products` → array\n        \n    - `total` → number\n        \n    - `userId` → number\n        \n- The returned `id` should match the `validID` sent in the URL."
+          },
+          "response": []
+        },
+        {
+          "name": "Get /carts /id (invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"404 Status Code\", function(){\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Response is json obj\", function(){\r",
+                  "    pm.expect(pm.response.json()).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "pm.test('Cart Not Found', function(){\r",
+                  "    pm.expect(resp).to.have.property('message','Cart with id \\'' +InvalidID+ '\\' not found');\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/carts/{{invalidID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "{{invalidID}}"
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/carts/{{invalidID}}`.\n\n**Endpoint:** `GET {{baseUrl}}/carts/{{invalidID}}`\n\n**What it does**\n\nAttempts to fetch a cart using an **invalid cart ID**.\n\n**Inputs**\n\n- **Path param:** `invalidID`\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a clear error message:\n    \n    - `\"Cart with id {{invalidID}} not found\"`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get /carts /user /id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"200 Status Code\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "const id = parseInt(pm.variables.get('userID'));\r",
+                  "pm.test(\"All returned carts belong to user 1\", () => {\r",
+                  "    resp.carts.forEach((v,k) => {\r",
+                  "        pm.expect(v.userID).to.eql(id);\r",
+                  "    });\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/carts/user/{{userID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "user",
+                "{{userID}}"
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/carts/user/{{userID}}`.\n\n**Endpoint:** `GET {{baseUrl}}/carts/user/{{userID}}`\n\n**What it does**\n\nRetrieves all carts associated with a specific user by user ID.\n\n**Inputs**\n\n- **Path param:** `userID`\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be in **application/json** format.\n    \n- Response should be a **JSON object**.\n    \n- All returned carts should belong to the requested user.\n    \n- The `userID` of each cart should equal the `userID` provided in the URL"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /carts /Add",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 201 Created\", () => {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "const res = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Total and Discounted Total exists\", () => {\r",
+                  "    pm.expect(res).to.have.property(\"total\");\r",
+                  "    pm.expect(res).to.have.property(\"discountedTotal\");\r",
+                  "});\r",
+                  "\r",
+                  "// Validate userId matches\r",
+                  "const ExpectedID = parseInt(pm.environment.get(\"userID\"));\r",
+                  "pm.test(\"User ID is correct\", () => {\r",
+                  "    pm.expect(res.userId).to.eql(ExpectedID);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userId\":{{userID}} ,\r\n    \"products\": [\r\n        {\"id\": 1, \"quantity\": 1},\r\n        {\"id\": 2, \"quantity\": 3}\r\n    ]\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "add"
+              ]
+            },
+            "description": "This request sends **POST** to `{{baseUrl}}/carts/add`.\n\n**Endpoint:** `POST {{baseUrl}}/carts/add`\n\n**What it does**\n\nCreates a new cart for a specific user and adds selected products with their quantities.\n\n**Inputs**\n\n- **Request body:**\n    \n    - `userId` (number) – ID of the user creating the cart\n        \n    - `products` (array) – List of products to add to the cart\n        \n        - `id` (number) – Product ID\n            \n        - `quantity` (number) – Quantity of the product\n            \n\n**Expected behavior**\n\n- Status should be **201 Created**.\n    \n- Response should include the following properties:\n    \n    - `total`\n        \n    - `discountedTotal`\n        \n- The returned `userId` should match the `userID` sent in the request body."
+          },
+          "response": []
+        },
+        {
+          "name": "Patch /carts /id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "const res = pm.response.json();\r",
+                  "\r",
+                  "const sameUserID = parseInt(pm.environment.get(\"userID\"));\r",
+                  "pm.test(\"User ID matches\", () => {\r",
+                  "    pm.expect(res.userId).to.eql(sameUserID); \r",
+                  "});\r",
+                  "\r",
+                  "const updatedQuantity = parseInt(pm.environment.get(\"NewQuantity\"));\r",
+                  "pm.test(\"Product 1 quantity updated correctly\", function(){\r",
+                  "pm.expect(res.products[0].quantity).to.equal(updatedQuantity);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"userId\": {{userID}},\r\n  \"products\": [\r\n    {\r\n      \"id\": 1,\r\n      \"quantity\": {{NewQuantity}}\r\n    }\r\n  ]\r\n} "
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "{{validID}}"
+              ]
+            },
+            "description": "This request sends **PATCH** to `{{baseUrl}}/carts/{{validID}}`.\n\n**Endpoint:** `PATCH {{baseUrl}}/carts/{{validID}}`\n\n**What it does**\n\nUpdates an existing cart’s products and/or quantities for a specific user.\n\n**Inputs**\n\n- **Path param:** `validID` – ID of the cart to update\n    \n- **Request body:**\n    \n    - `userId` (number) – ID of the user who owns the cart\n        \n    - `products` (array) – List of products to update\n        \n        - `id` (number) – Product ID\n            \n        - `quantity` (number) – New quantity for the product\n            \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- The returned `userId` should match the `userID` sent in the request.\n    \n- The quantity of the updated product should match the new quantity provided in the request body."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /carts /id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Cart is Deleted\", function() {\r",
+                  "    pm.expect(resp).to.have.property(\"isDeleted\", true);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "{{validID}}"
+              ]
+            },
+            "description": "This request sends **DELETE** to `{{baseUrl}}/carts/{{validID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/carts/{{validID}}`\n\n**What it does**\n\nDeletes an existing cart identified by its ID.\n\n**Inputs**\n\n- **Path param:** `validID` – ID of the cart to delete\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be in **application/json** format.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a property:\n    \n    - `isDeleted` → `true`\n        \n- The cart with the specified `validID` should be considered deleted."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /carts /id (invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('404 Status Code', function(){\r",
+                  "    pm.response.to.have.status(404);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Content-Type = application/json\", function(){\r",
+                  "    const ct = pm.response.headers.get('Content-Type');\r",
+                  "    pm.expect(ct).to.include('application/json');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "pm.test('Cart Not Found', function(){\r",
+                  "    pm.expect(resp).to.have.property('message','Cart with id \\'' +InvalidID+ '\\' not found');\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/{{invalidID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "carts",
+                "{{invalidID}}"
+              ]
+            },
+            "description": "This request sends **DELETE** to `{{baseUrl}}/carts/{{invalidID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/carts/{{invalidID}}`\n\n**What it does**\n\nAttempts to delete a cart using an **invalid cart ID** that does not exist.\n\n**Inputs**\n\n- **Path param:** `invalidID` – ID of the cart to delete\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should be in **application/json** format.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a clear error message:\n    \n    - `\"Cart with id {{invalidID}} not found\"`"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "POST auth /login New",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200)\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test('User has id, email, access and refresh token', function()\r",
+                  " {\r",
+                  "     pm.expect(resp).to.have.property('id');\r",
+                  "     pm.expect(resp).to.have.property('email');\r",
+                  "    pm.expect(resp).to.have.property('accessToken');\r",
+                  "    pm.expect(resp).to.have.property('refreshToken');\r",
+                  " });\r",
+                  "\r",
+                  "// Persist created user for the rest of the flow\r",
+                  "pm.environment.set(\"userID\",String(resp.id));\r",
+                  "pm.environment.set('user_email', resp.email);\r",
+                  "pm.environment.set('access_token', String(resp.accessToken));\r",
+                  "pm.environment.set('refresh_token', String(resp.refreshToken));"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accesstoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"username\": \"emilys\",\r\n     \"password\": \"emilyspass\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "This request sends **POST** to `{{baseUrl}}/auth/login`.\n\n**Endpoint:** `POST {{baseUrl}}/auth/login`\n\n**What it does**\n\nAuthenticates a user with their username and password and returns user details along with access and refresh tokens.\n\n**Inputs**\n\n- **Request body:**\n    \n    - `username` (string) – User’s username\n        \n    - `password` (string) – User’s password\n        \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should include the following properties:\n    \n    - `id` → User ID\n        \n    - `email` → User email\n        \n    - `accessToken` → JWT access token\n        \n    - `refreshToken` → JWT refresh token\n        \n- The following values should be saved in environment variables for future requests:\n    \n    - `userID` → User ID\n        \n    - `user_email` → User email\n        \n    - `access_token` → Access token\n        \n    - `refresh_token` → Refresh token"
+          },
+          "response": []
+        },
+        {
+          "name": "POST auth /login (invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('400 Status Code', function(){\r",
+                  "       pm.response.to.have.status(400);\r",
+                  " });\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test(\"Invalid Credentials Message\", function() {\r",
+                  "    pm.expect(resp).to.have.property('message', \"Invalid credentials\");\r",
+                  "} );"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accesstoken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n     \"username\": \"HalaAhmad\",\r\n     \"password\": \"HalaAhmad.123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "This request sends **POST** to `{{baseUrl}}/auth/login` using invalid credentials.\n\n**Endpoint:** `POST {{baseUrl}}/auth/login`\n\n**What it does**\n\nAttempts to authenticate a user with incorrect username or password.\n\n**Inputs**\n\n- **Request body:**\n    \n    - `username` (string) – Invalid username\n        \n    - `password` (string) – Invalid password\n        \n\n**Expected behavior**\n\n- Status should be **400 Bad Request**.\n    \n- Response should contain a clear error message:\n    \n    - `\"Invalid credentials\"`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get auth /me (bearer required)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function() \r",
+                  "{ \r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('Profile has id, email, role', function()\r",
+                  " {\r",
+                  "  pm.expect(resp).to.have.property('id');\r",
+                  "  pm.expect(resp).to.have.property('email');\r",
+                  "  pm.expect(resp).to.have.property('role');\r",
+                  "});\r",
+                  "\r",
+                  "const ExpectedEmail= pm.environment.get('user_email');\r",
+                  "\r",
+                  "pm.test('Email matches user_email variable', function()\r",
+                  " {\r",
+                  "  pm.expect(resp.email).to.eql(ExpectedEmail);\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set('userID', String(resp.id));"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/auth/me`.\n\n**Endpoint:** `GET {{baseUrl}}/auth/me`\n\n**What it does**\n\nRetrieves the profile details of the currently authenticated user using the access token.\n\n**Inputs**\n\n- **Request body:** None\n    \n- **Headers:**\n    \n    - `Authorization: Bearer {{access_token}}`\n        \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should include the following properties:\n    \n    - `id` → User ID\n        \n    - `email` → User email\n        \n    - `role` → User role\n        \n- The `email` in the response should match the `user_email` saved in the environment variable.\n    \n- The `id` should be saved or updated in the environment variable `userID` for future requests."
+          },
+          "response": []
+        },
+        {
+          "name": "Get auth /me (missing token)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"401 Status Code\", () => {\r",
+                  "    pm.response.to.have.status(401);\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Message indicates missing token\", () => {\r",
+                  "    pm.expect(resp).to.have.property('message', 'Authentication failed');\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/auth/me` **without an access token**.\n\n**Endpoint:** `GET {{baseUrl}}/auth/me`\n\n**What it does**\n\nAttempts to retrieve the profile of a user without providing authentication.\n\n**Inputs**\n\n- **Request body:** None\n    \n- **Headers:** No `Authorization` header\n    \n\n**Expected behavior**\n\n- Status should be **401 Unauthorized.**\n    \n- Response should contain a clear error message indicating that the token is missing.\n    \n    - Example property: `\"message\"` → should indicate `\"Authentication Failed\".`"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /auth /refresh",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function()\r",
+                  "{\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('Has access_token and refresh_token', () => {\r",
+                  "  pm.expect(resp).to.have.property('accessToken');\r",
+                  "  pm.expect(resp).to.have.property('refreshToken');\r",
+                  "});\r",
+                  "\r",
+                  "pm.environment.set('access_token', resp.accessToken);\r",
+                  "pm.environment.set('refresh_token', resp.refreshToken);\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"refreshToken\": \"{{refresh_token}}\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "refresh"
+              ]
+            },
+            "description": "This request sends **POST** to `{{baseUrl}}/auth/refresh`.\n\n**Endpoint:** `POST {{baseUrl}}/auth/refresh`\n\n**What it does**\n\nGenerates new **access** and **refresh tokens** using a valid refresh token.\n\n**Inputs**\n\n- **Request body:**\n    \n    - `refreshToken` (string) – The refresh token saved in the environment variable `{{refresh_token}}`\n        \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should include the following properties:\n    \n    - `accessToken` → New access token\n        \n    - `refreshToken` → New refresh token\n        \n- The new tokens should be saved in the environment variables:\n    \n    - `access_token` → New access token\n        \n    - `refresh_token` → New refresh token"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get /users (list)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"200 Status Code\", function(){",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Content-Type = application/json\", function(){",
+                  "    const ct = pm.response.headers.get('Content-Type');",
+                  "    pm.expect(ct).to.include('application/json');",
+                  "});",
+                  "",
+                  "const usersResponseArray = pm.response.json().users;",
+                  "pm.test(\"Users property is json array\", function(){",
+                  "    pm.expect(usersResponseArray).to.be.an('array');",
+                  "});",
+                  "",
+                  "pm.test(\"Response is json obj\", function(){",
+                  "    pm.expect(pm.response.json()).to.be.an('object');",
+                  "});",
+                  "",
+                  "pm.test(\"Users array length > 0\", function(){",
+                  "    pm.expect(usersResponseArray.length).to.be.above(0);",
+                  "    ",
+                  "});",
+                  "",
+                  "pm.test(\"All users have required keys\", function(){",
+                  "    // slice(0 inclusive, 6 exclusive), to get part of array",
+                  "    usersResponseArray.slice(0,6).forEach(",
+                  "        (v, k) => {",
+                  "            pm.expect(v).to.include.keys('id', 'email', 'firstName', 'role');",
+                  "        });",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/users`.\n\n**Endpoint:** `GET {{baseUrl}}/users`\n\n**What it does**\n\nFetches a list of all users in the system.\n\n**Inputs**\n\n- **Path parameters:** None\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be in **application/json** format.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a `users` property.\n    \n- `users` should be a **JSON array**.\n    \n- The users `array length` should be greater than `0`.\n    \n- Each user object should contain the following keys:\n    \n    - `id`\n        \n    - `email`\n        \n    - `firstName`\n        \n    - `role`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get /users /id (single user)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Valid required keys', function(){\r",
+                  "    pm.expect(resp).to.include.keys('id','email', 'firstName' ,'role');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Valid key Types', function(){\r",
+                  "    pm.expect(resp.id).to.be.an('number'); \r",
+                  "    pm.expect(resp.email).to.be.an('string');\r",
+                  "     pm.expect(resp.firstName).to.be.an('string');      \r",
+                  "    pm.expect(resp.role).to.be.an('string');  \r",
+                  "});\r",
+                  "\r",
+                  "const ExpectedID = parseInt(pm.environment.get('validID'));\r",
+                  "pm.test('ReturnedID = RequestedID', function(){\r",
+                  "pm.expect(resp.id).to.be.equal(ExpectedID);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{validID}}"
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/users/{{validID}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/{{validID}}`\n\n**What it does**\n\nFetches a single user’s details by their ID.\n\n**Inputs**\n\n- **Path param:** `validID` – ID of the user to retrieve\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain the following keys:\n    \n    - `id`\n        \n    - `email`\n        \n    - `firstName`\n        \n    - `role`\n        \n- Data types should be valid:\n    \n    - `id` → number\n        \n    - `email` → string\n        \n    - `firstName` → string\n        \n    - `role` → string\n        \n- The returned `id` should match the `validID` sent in the URL."
+          },
+          "response": []
+        },
+        {
+          "name": "Get /users /id (invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('404 Status Code', function(){\r",
+                  "    pm.response.to.have.status(404);    \r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "pm.test('User Not Found', function(){\r",
+                  "    pm.expect(resp).to.have.property('message','User with id \\'' +InvalidID+ '\\' not found');\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/{{invalidID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{invalidID}}"
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/users/{{invalidID}}`.\n\n**Endpoint:**`GET {{baseUrl}}/users/{{invalidID}}`\n\n**What it does**\n\nAttempts to fetch a user using an **invalid or non-existent user ID**.\n\n**Inputs**\n\n- **Path param:** `invalidID` – ID of the user that does not exist\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should contain a clear error message:\n    \n    - `\"User with id {{invalidID}} not found\"`"
+          },
+          "response": []
+        },
+        {
+          "name": "Get /users /search",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test('Returned Response is an Object', function() {\r",
+                  "    pm.expect(resp).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Users Array is Not Empty', function () {\r",
+                  "    pm.expect(resp.users).to.not.be.empty;\r",
+                  "    //pm.expect(resp.users.length).to.be.above(0);\r",
+                  "});\r",
+                  "\r",
+                  "const users = resp.users;\r",
+                  "const searchWord =  pm.collectionVariables.get('searchName');\r",
+                  "pm.test('First Name has the Searched Word', function(){\r",
+                  "   users.forEach(\r",
+                  "        (v,k)=>{\r",
+                  "            pm.expect(v.firstName).to.include(searchWord);\r",
+                  "    });\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/search?q={{searchName}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{searchName}}"
+                }
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/users/search?q={{searchName}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/search?q={{searchName}}`\n\n**What it does**\n\nSearches for users whose first names contain the specified search keyword.\n\n**Inputs**\n\n- **Query parameter:**\n    \n    - `q` → The search keyword, saved in `{{searchName}}`\n        \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- The `users` array should not be empty.\n    \n- Each user in the results should have a `firstName` that **includes the search keyword** provided in the query parameter."
+          },
+          "response": []
+        },
+        {
+          "name": "Get users /search (invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('200 Status Code', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "const resp = pm.response.json();\r",
+                  "pm.test('Returned Response is an object', function() {\r",
+                  "    pm.expect(resp).to.be.an('object');\r",
+                  "});\r",
+                  "\r",
+                  "// returns an empty result set\r",
+                  "pm.test('Users Array is Empty and Total is 0', function(){\r",
+                  "    pm.expect(resp.users).to.be.empty;\r",
+                  "    pm.expect(resp.total).to.be.equal(0);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/search?q={{invalidSearch}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "{{invalidSearch}}"
+                }
+              ]
+            },
+            "description": "This request sends **GET** to `{{baseUrl}}/users/search?q={{invalidSearch}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/search?q={{invalidSearch}}`\n\n---\n\n**What it does**\n\nSearches for users using a keyword that does **not match any user** in the system.\n\n**Inputs**\n\n- **Query parameter:**\n    \n    - `q` → The invalid search keyword, saved in `{{invalidSearch}}`\n        \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- The response should indicate an **empty result set**:\n    \n    - `total` → `0`\n        \n    - `users` → empty array (if included)"
+          },
+          "response": []
+        },
+        {
+          "name": "POST /users /Add",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('201 Created Status Code', function(){\r",
+                  "    pm.response.to.have.status(201);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response has an id', function(){\r",
+                  "    pm.expect(resp).to.have.property(\"id\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Returned Fields Match Input', function(){\r",
+                  "    pm.expect(resp.firstName).to.be.equal(\"Easter\");\r",
+                  "    pm.expect(resp.lastName).to.be.equal(\"Bunny\");  \r",
+                  "    pm.expect(resp.age).to.be.equal(5);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"Easter\",\r\n    \"lastName\": \"Bunny\",\r\n    \"age\": 5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "add"
+              ]
+            },
+            "description": "This request sends **POST** to `{{baseUrl}}/users/add`.\n\n**Endpoint:** `POST {{baseUrl}}/users/add`\n\n**What it does**\n\nCreates a new user in the system with the provided details.\n\n**Inputs**\n\n- **Request body:**\n    \n    - `firstName` (string) – User’s first name\n        \n    - `lastName` (string) – User’s last name\n        \n    - `age` (number) – User’s age\n        \n\n**Expected behavior**\n\n- Status should be **201 Created**.\n    \n- Response should be a **JSON object**.\n    \n- Response should include an `id` for the newly created user.\n    \n- The returned fields (`firstName`, `lastName`, `age`) should **match the input values** provided in the request body."
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /users /id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"User is Deleted\", function() {\r",
+                  "    pm.expect(resp).to.have.property(\"isDeleted\", true);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"UpdatedUser\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/{{validID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{validID}}"
+              ]
+            },
+            "description": "This request sends **DELETE** to `{{baseUrl}}/users/{{validID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/users/{{validID}}`\n\n**What it does**\n\nDeletes an existing user identified by their ID.\n\n**Inputs**\n\n- **Path param:** `validID` – ID of the user to delete\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a property:\n    \n    - `isDeleted` → `true`"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /users /id (invalid)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('404 Status Code', function(){\r",
+                  "    pm.response.to.have.status(404);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "pm.test('User Not Found', function(){\r",
+                  "    pm.expect(resp).to.have.property('message','User with id \\'' +InvalidID+ '\\' not found');\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"UpdatedUser\"\r\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/{{invalidID}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{invalidID}}"
+              ]
+            },
+            "description": "This request sends **DELETE** to `{{baseUrl}}/users/{{invalidID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/users/{{invalidID}}`\n\n**What it does**\n\nAttempts to delete a user using an **invalid or non-existent user ID**.\n\n**Inputs**\n\n- **Path param:** `invalidID` – ID of the user that does not exist\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a clear error message:\n    \n    - `\"User with id {{invalidID}} not found\"`"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "searchProduct",
+      "value": ""
+    },
+    {
+      "key": "NewProductID",
+      "value": ""
+    },
+    {
+      "key": "NewProductTitle",
+      "value": ""
+    },
+    {
+      "key": "NewProductPrice",
+      "value": ""
+    },
+    {
+      "key": "updatedTitle",
+      "value": ""
+    },
+    {
+      "key": "searchName",
+      "value": ""
+    }
+  ]
+}
