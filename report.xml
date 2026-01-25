@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="DummyJasonFinalProject" tests="93" time="17.504">
+  <testsuite name="Products / Get /products (list)" id="dcdfea54-45ee-45cc-8fd5-10c8123c1d54" timestamp="2026-01-25T20:01:08.019Z" tests="6" failures="0" errors="0" time="0.053">
+    <testcase name="200 Status Code" time="0.016" classname="ProductsGetProductsList"/>
+    <testcase name="Content-Type = application/json" time="0.016" classname="ProductsGetProductsList"/>
+    <testcase name="Products property is json array" time="0.016" classname="ProductsGetProductsList"/>
+    <testcase name="Response is json obj" time="0.016" classname="ProductsGetProductsList"/>
+    <testcase name="Products array length > 0" time="0.016" classname="ProductsGetProductsList"/>
+    <testcase name="All products have required keys" time="0.016" classname="ProductsGetProductsList"/>
+  </testsuite>
+  <testsuite name="Products / Get /products /id (single product)" id="1c53bf0c-f6bf-4c79-9213-ec8a96944148" timestamp="2026-01-25T20:01:08.019Z" tests="6" failures="0" errors="0" time="0.020">
+    <testcase name="200 Status Code" time="0.013" classname="ProductsGetProductsIdSingleProduct"/>
+    <testcase name="Content-Type = application/json" time="0.013" classname="ProductsGetProductsIdSingleProduct"/>
+    <testcase name="Response is json object" time="0.013" classname="ProductsGetProductsIdSingleProduct"/>
+    <testcase name="Valid required keys" time="0.013" classname="ProductsGetProductsIdSingleProduct"/>
+    <testcase name="Valid key Types" time="0.013" classname="ProductsGetProductsIdSingleProduct"/>
+    <testcase name="ReturnedID = RequestedID" time="0.013" classname="ProductsGetProductsIdSingleProduct"/>
+  </testsuite>
+  <testsuite name="Products / Get /products /id (invalid)" id="2001b204-f44e-4c7e-9960-e92c2670ed7b" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.243">
+    <testcase name="404 Status Code" time="0.148" classname="ProductsGetProductsIdInvalid"/>
+    <testcase name="Content-Type = application/json" time="0.148" classname="ProductsGetProductsIdInvalid"/>
+    <testcase name="Product Not Found" time="0.148" classname="ProductsGetProductsIdInvalid"/>
+  </testsuite>
+  <testsuite name="Products / Get /products/ search" id="ccdf1ccb-99f0-47cf-a3ad-10051cbd2597" timestamp="2026-01-25T20:01:08.019Z" tests="5" failures="0" errors="0" time="0.197">
+    <testcase name="200 Status Code" time="0.150" classname="ProductsGetProductsSearch"/>
+    <testcase name="Returned Response is an Object" time="0.150" classname="ProductsGetProductsSearch"/>
+    <testcase name="Content-Type = application/json" time="0.150" classname="ProductsGetProductsSearch"/>
+    <testcase name="Products Array is Not Empty" time="0.150" classname="ProductsGetProductsSearch"/>
+    <testcase name="Descriptione has the Searched Word" time="0.150" classname="ProductsGetProductsSearch"/>
+  </testsuite>
+  <testsuite name="Products / Get /products/ search (Invalid)" id="712e91cb-43fa-41f4-a9f5-72fed3359918" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.196">
+    <testcase name="200 Status Code" time="0.162" classname="ProductsGetProductsSearchInvalid"/>
+    <testcase name="Returned Response is an object" time="0.162" classname="ProductsGetProductsSearchInvalid"/>
+    <testcase name="content-type = application/json" time="0.162" classname="ProductsGetProductsSearchInvalid"/>
+    <testcase name="Total is 0 and Products array is empty" time="0.162" classname="ProductsGetProductsSearchInvalid"/>
+  </testsuite>
+  <testsuite name="Products / POST /products /Add" id="3720b5d8-9cee-405d-9346-14ee323d5c19" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.214">
+    <testcase name="201 Created Status Code" time="0.196" classname="ProductsPostProductsAdd"/>
+    <testcase name="Response is json object" time="0.196" classname="ProductsPostProductsAdd"/>
+    <testcase name="Valid required keys" time="0.196" classname="ProductsPostProductsAdd"/>
+    <testcase name="Returned Fields Match Input" time="0.196" classname="ProductsPostProductsAdd"/>
+  </testsuite>
+  <testsuite name="Products / PUT /products /id" id="524315a5-978b-4cf3-979d-7f74029092f6" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.266">
+    <testcase name="200 Status Code" time="0.150" classname="ProductsPutProductsId"/>
+    <testcase name="Response is json object" time="0.150" classname="ProductsPutProductsId"/>
+    <testcase name="content-type = application/json" time="0.150" classname="ProductsPutProductsId"/>
+    <testcase name="Updated Field Reflects New Value" time="0.150" classname="ProductsPutProductsId"/>
+  </testsuite>
+  <testsuite name="Products / DELETE /products /id" id="0566c538-47f5-49f2-8376-641d4d5eaee7" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.221">
+    <testcase name="200 Status Code" time="0.250" classname="ProductsDeleteProductsId"/>
+    <testcase name="Response is json object" time="0.250" classname="ProductsDeleteProductsId"/>
+    <testcase name="content-type = application/json" time="0.250" classname="ProductsDeleteProductsId"/>
+    <testcase name="Product is Deleted" time="0.250" classname="ProductsDeleteProductsId"/>
+  </testsuite>
+  <testsuite name="Products / DELETE /products /id (Invalid)" id="d3f050c6-0c2c-42f4-ba17-5592cf3b0249" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.193">
+    <testcase name="404 Status Code" time="0.160" classname="ProductsDeleteProductsIdInvalid"/>
+    <testcase name="Response is json object" time="0.160" classname="ProductsDeleteProductsIdInvalid"/>
+    <testcase name="content-type = application/json" time="0.160" classname="ProductsDeleteProductsIdInvalid"/>
+    <testcase name="Product Not Found" time="0.160" classname="ProductsDeleteProductsIdInvalid"/>
+  </testsuite>
+  <testsuite name="Carts / Get /carts (list)" id="5378fa20-cce3-43b3-967e-c45859e53840" timestamp="2026-01-25T20:01:08.019Z" tests="6" failures="0" errors="0" time="0.187">
+    <testcase name="200 Status Code" time="0.163" classname="CartsGetCartsList"/>
+    <testcase name="Content-Type = application/json" time="0.163" classname="CartsGetCartsList"/>
+    <testcase name="Carts property is json array" time="0.163" classname="CartsGetCartsList"/>
+    <testcase name="Returned response is json obj" time="0.163" classname="CartsGetCartsList"/>
+    <testcase name="Carts array length > 0" time="0.163" classname="CartsGetCartsList"/>
+    <testcase name="All carts have required keys" time="0.163" classname="CartsGetCartsList"/>
+  </testsuite>
+  <testsuite name="Carts / Get /carts /id (single cart)" id="7c5d2708-667a-40e4-859b-a3d2e0d9e526" timestamp="2026-01-25T20:01:08.019Z" tests="6" failures="0" errors="0" time="0.186">
+    <testcase name="200 Status Code" time="0.199" classname="CartsGetCartsIdSingleCart"/>
+    <testcase name="Content-Type = application/json" time="0.199" classname="CartsGetCartsIdSingleCart"/>
+    <testcase name="Response is json object" time="0.199" classname="CartsGetCartsIdSingleCart"/>
+    <testcase name="Valid required keys" time="0.199" classname="CartsGetCartsIdSingleCart"/>
+    <testcase name="Valid key Types" time="0.199" classname="CartsGetCartsIdSingleCart"/>
+    <testcase name="ReturnedID = RequestedID" time="0.199" classname="CartsGetCartsIdSingleCart"/>
+  </testsuite>
+  <testsuite name="Carts / Get /carts /id (invalid)" id="ea08a9c2-f5a3-4cef-864b-2fdd6cb4b120" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.229">
+    <testcase name="404 Status Code" time="0.209" classname="CartsGetCartsIdInvalid"/>
+    <testcase name="Response is json obj" time="0.209" classname="CartsGetCartsIdInvalid"/>
+    <testcase name="Cart Not Found" time="0.209" classname="CartsGetCartsIdInvalid"/>
+  </testsuite>
+  <testsuite name="Carts / Get /carts /user /id" id="92166a22-12e4-473d-8c66-87f488828a39" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.219">
+    <testcase name="200 Status Code" time="0.222" classname="CartsGetCartsUserId"/>
+    <testcase name="Content-Type = application/json" time="0.222" classname="CartsGetCartsUserId"/>
+    <testcase name="Response is json object" time="0.222" classname="CartsGetCartsUserId"/>
+    <testcase name="All returned carts belong to user 1" time="0.222" classname="CartsGetCartsUserId"/>
+  </testsuite>
+  <testsuite name="Carts / POST /carts /Add" id="41be12e5-80f8-4e9b-8e01-4d35a60dfb83" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.189">
+    <testcase name="Status code is 201 Created" time="0.218" classname="CartsPostCartsAdd"/>
+    <testcase name="Total and Discounted Total exists" time="0.218" classname="CartsPostCartsAdd"/>
+    <testcase name="User ID is correct" time="0.218" classname="CartsPostCartsAdd"/>
+  </testsuite>
+  <testsuite name="Carts / Patch /carts /id" id="c5180192-9931-4090-8bb6-6aa83a8a7238" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.196">
+    <testcase name="200 Status Code" time="0.230" classname="CartsPatchCartsId"/>
+    <testcase name="User ID matches" time="0.230" classname="CartsPatchCartsId"/>
+    <testcase name="Product 1 quantity updated correctly" time="0.230" classname="CartsPatchCartsId"/>
+  </testsuite>
+  <testsuite name="Carts / DELETE /carts /id" id="c3dd61c9-2a6a-4c2f-9835-27386f89219a" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.165">
+    <testcase name="200 Status Code" time="0.153" classname="CartsDeleteCartsId"/>
+    <testcase name="Content-Type = application/json" time="0.153" classname="CartsDeleteCartsId"/>
+    <testcase name="Response is json object" time="0.153" classname="CartsDeleteCartsId"/>
+    <testcase name="Cart is Deleted" time="0.153" classname="CartsDeleteCartsId"/>
+  </testsuite>
+  <testsuite name="Carts / DELETE /carts /id (invalid)" id="57ec87a2-5e99-4fd2-8d81-b780749d4e0c" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.189">
+    <testcase name="404 Status Code" time="0.182" classname="CartsDeleteCartsIdInvalid"/>
+    <testcase name="Content-Type = application/json" time="0.182" classname="CartsDeleteCartsIdInvalid"/>
+    <testcase name="Response is json object" time="0.182" classname="CartsDeleteCartsIdInvalid"/>
+    <testcase name="Cart Not Found" time="0.182" classname="CartsDeleteCartsIdInvalid"/>
+  </testsuite>
+  <testsuite name="Authentication / POST auth /login New" id="263bc083-7deb-4a21-b679-9bfbd071e9d4" timestamp="2026-01-25T20:01:08.019Z" tests="2" failures="0" errors="0" time="0.200">
+    <testcase name="200 Status Code" time="0.225" classname="AuthenticationPostAuthLoginNew"/>
+    <testcase name="User has id, email, access and refresh token" time="0.225" classname="AuthenticationPostAuthLoginNew"/>
+  </testsuite>
+  <testsuite name="Authentication / POST auth /login (invalid)" id="9b9eaf60-8f89-4dab-958d-16fc1d549f2e" timestamp="2026-01-25T20:01:08.019Z" tests="2" failures="0" errors="0" time="0.182">
+    <testcase name="400 Status Code" time="0.217" classname="AuthenticationPostAuthLoginInvalid"/>
+    <testcase name="Invalid Credentials Message" time="0.217" classname="AuthenticationPostAuthLoginInvalid"/>
+  </testsuite>
+  <testsuite name="Authentication / Get auth /me (bearer required)" id="85c08ca3-2eb0-4852-a5d3-9f32cd81fd94" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.209">
+    <testcase name="200 Status Code" time="0.210" classname="AuthenticationGetAuthMeBearerRequired"/>
+    <testcase name="Profile has id, email, role" time="0.210" classname="AuthenticationGetAuthMeBearerRequired"/>
+    <testcase name="Email matches user_email variable" time="0.210" classname="AuthenticationGetAuthMeBearerRequired"/>
+  </testsuite>
+  <testsuite name="Authentication / Get auth /me (missing token)" id="de579d78-c0a4-461a-9296-dc265fae36ac" timestamp="2026-01-25T20:01:08.019Z" tests="2" failures="6" errors="0" time="0.290">
+    <testcase name="401 Status Code" time="0.150" classname="AuthenticationGetAuthMeMissingToken">
+      <failure type="AssertionFailure" message="expected response to have status code 401 but got 200">
+        <![CDATA[Failed 3 times.]]>
+        <![CDATA[Collection JSON ID: b6c440b7-487c-424e-aa43-59643817d8b9.]]>
+        <![CDATA[Collection name: DummyJasonFinalProject.]]>
+        <![CDATA[Request name: Authentication / Get auth /me (missing token).]]>
+        <![CDATA[Test description: 401 Status Code.]]>
+        <![CDATA[Error message: expected response to have status code 401 but got 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 401 but got 200
+   at Object.eval sandbox-script.js:1:21).]]>
+      </failure>
+    </testcase>
+    <testcase name="Message indicates missing token" time="0.150" classname="AuthenticationGetAuthMeMissingToken">
+      <failure type="AssertionFailure" message="expected { id: 1, firstName: 'Emily', …(26) } to have property 'message'">
+        <![CDATA[Failed 3 times.]]>
+        <![CDATA[Collection JSON ID: b6c440b7-487c-424e-aa43-59643817d8b9.]]>
+        <![CDATA[Collection name: DummyJasonFinalProject.]]>
+        <![CDATA[Request name: Authentication / Get auth /me (missing token).]]>
+        <![CDATA[Test description: Message indicates missing token.]]>
+        <![CDATA[Error message: expected { id: 1, firstName: 'Emily', …(26) } to have property 'message'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected { id: 1, firstName: 'Emily', …(26) } to have property 'message'
+   at Object.eval sandbox-script.js:2:21).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Authentication / POST /auth /refresh" id="fe6a3666-167e-4f06-bf37-2cf563972352" timestamp="2026-01-25T20:01:08.019Z" tests="2" failures="0" errors="0" time="0.173">
+    <testcase name="200 Status Code" time="0.150" classname="AuthenticationPostAuthRefresh"/>
+    <testcase name="Has access_token and refresh_token" time="0.150" classname="AuthenticationPostAuthRefresh"/>
+  </testsuite>
+  <testsuite name="Users / Get /users (list)" id="59605e2b-98fb-4c27-9f60-cde836643541" timestamp="2026-01-25T20:01:08.019Z" tests="6" failures="0" errors="0" time="0.019">
+    <testcase name="200 Status Code" time="0.018" classname="UsersGetUsersList"/>
+    <testcase name="Content-Type = application/json" time="0.018" classname="UsersGetUsersList"/>
+    <testcase name="Users property is json array" time="0.018" classname="UsersGetUsersList"/>
+    <testcase name="Response is json obj" time="0.018" classname="UsersGetUsersList"/>
+    <testcase name="Users array length > 0" time="0.018" classname="UsersGetUsersList"/>
+    <testcase name="All users have required keys" time="0.018" classname="UsersGetUsersList"/>
+  </testsuite>
+  <testsuite name="Users / Get /users /id (single user)" id="d879c964-bf57-4531-8d7f-c929dc7620f6" timestamp="2026-01-25T20:01:08.019Z" tests="5" failures="0" errors="0" time="0.152">
+    <testcase name="200 Status Code" time="0.151" classname="UsersGetUsersIdSingleUser"/>
+    <testcase name="Response is json object" time="0.151" classname="UsersGetUsersIdSingleUser"/>
+    <testcase name="Valid required keys" time="0.151" classname="UsersGetUsersIdSingleUser"/>
+    <testcase name="Valid key Types" time="0.151" classname="UsersGetUsersIdSingleUser"/>
+    <testcase name="ReturnedID = RequestedID" time="0.151" classname="UsersGetUsersIdSingleUser"/>
+  </testsuite>
+  <testsuite name="Users / Get /users /id (invalid)" id="7b95c3f4-1cc8-437a-af34-b896dc6f9522" timestamp="2026-01-25T20:01:08.019Z" tests="2" failures="0" errors="0" time="0.228">
+    <testcase name="404 Status Code" time="0.212" classname="UsersGetUsersIdInvalid"/>
+    <testcase name="User Not Found" time="0.212" classname="UsersGetUsersIdInvalid"/>
+  </testsuite>
+  <testsuite name="Users / Get /users /search" id="27e84221-64c2-4cb2-a945-6ad8badafaf5" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.197">
+    <testcase name="200 Status Code" time="0.227" classname="UsersGetUsersSearch"/>
+    <testcase name="Returned Response is an Object" time="0.227" classname="UsersGetUsersSearch"/>
+    <testcase name="Users Array is Not Empty" time="0.227" classname="UsersGetUsersSearch"/>
+    <testcase name="First Name has the Searched Word" time="0.227" classname="UsersGetUsersSearch"/>
+  </testsuite>
+  <testsuite name="Users / Get users /search (invalid)" id="edc8bba5-6a85-43b3-b2d8-0cce27f4ba56" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.212">
+    <testcase name="200 Status Code" time="0.226" classname="UsersGetUsersSearchInvalid"/>
+    <testcase name="Returned Response is an object" time="0.226" classname="UsersGetUsersSearchInvalid"/>
+    <testcase name="Users Array is Empty and Total is 0" time="0.226" classname="UsersGetUsersSearchInvalid"/>
+  </testsuite>
+  <testsuite name="Users / POST /users /Add" id="ac6bc10c-fd66-409e-ab20-d0bfaab60335" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.205">
+    <testcase name="201 Created Status Code" time="0.203" classname="UsersPostUsersAdd"/>
+    <testcase name="Response is json object" time="0.203" classname="UsersPostUsersAdd"/>
+    <testcase name="Response has an id" time="0.203" classname="UsersPostUsersAdd"/>
+    <testcase name="Returned Fields Match Input" time="0.203" classname="UsersPostUsersAdd"/>
+  </testsuite>
+  <testsuite name="Users / PATCH /users /id" id="b38ccc3d-e304-426d-909e-8f71d369dc4e" timestamp="2026-01-25T20:01:08.019Z" tests="4" failures="0" errors="0" time="0.185">
+    <testcase name="200 Status Code" time="0.148" classname="UsersPatchUsersId"/>
+    <testcase name="Response is json object" time="0.148" classname="UsersPatchUsersId"/>
+    <testcase name="Response has an id" time="0.148" classname="UsersPatchUsersId"/>
+    <testcase name="Returned Fields Match Input" time="0.148" classname="UsersPatchUsersId"/>
+  </testsuite>
+  <testsuite name="Users / DELETE /users /id" id="9c09c7f7-a1c4-4dd4-861e-08ff6b39bcbc" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.206">
+    <testcase name="200 Status Code" time="0.186" classname="UsersDeleteUsersId"/>
+    <testcase name="Response is json object" time="0.186" classname="UsersDeleteUsersId"/>
+    <testcase name="User is Deleted" time="0.186" classname="UsersDeleteUsersId"/>
+  </testsuite>
+  <testsuite name="Users / DELETE /users /id (invalid)" id="97251e11-53a7-400a-8d34-df6bde8051aa" timestamp="2026-01-25T20:01:08.019Z" tests="3" failures="0" errors="0" time="0.212">
+    <testcase name="404 Status Code" time="0.214" classname="UsersDeleteUsersIdInvalid"/>
+    <testcase name="Response is json object" time="0.214" classname="UsersDeleteUsersIdInvalid"/>
+    <testcase name="User Not Found" time="0.214" classname="UsersDeleteUsersIdInvalid"/>
+  </testsuite>
+</testsuites>

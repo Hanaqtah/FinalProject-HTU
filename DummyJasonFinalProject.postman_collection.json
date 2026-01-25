@@ -249,6 +249,7 @@
               "listen": "prerequest",
               "script": {
                 "exec": [
+                  "pm.collectionVariables.set(\"searchProduct\", 'iPhone');\r",
                   ""
                 ],
                 "type": "text/javascript",
@@ -257,6 +258,9 @@
               }
             }
           ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
             "method": "GET",
             "header": [
@@ -266,6 +270,15 @@
                 "type": "text"
               }
             ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "{{baseUrl}}/products/search?q={{searchProduct}}",
               "host": [
@@ -1360,7 +1373,7 @@
                   "const resp = pm.response.json();\r",
                   "\r",
                   "pm.test(\"Message indicates missing token\", () => {\r",
-                  "    pm.expect(resp).to.have.property('message', 'Authentication failed');\r",
+                  "    pm.expect(resp).to.have.property('message', 'Access Token is required');\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -1573,7 +1586,12 @@
                   "    pm.expect(resp.role).to.be.an('string');  \r",
                   "});\r",
                   "\r",
-                  "const ExpectedID = parseInt(pm.environment.get('validID'));\r",
+                  "// obtaining expected ID from the environment variables\r",
+                  "//const ExpectedID = parseInt(pm.environment.get('validID'));\r",
+                  "\r",
+                  "//obtaining expected ID from the CSV file\r",
+                  "const ExpectedID =  pm.iterationData.get(\"Valid_Id\");\r",
+                  "\r",
                   "pm.test('ReturnedID = RequestedID', function(){\r",
                   "pm.expect(resp.id).to.be.equal(ExpectedID);\r",
                   "});"
@@ -1605,16 +1623,16 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{baseUrl}}/users/{{validID}}",
+              "raw": "{{baseUrl}}/users/{{Valid_Id}}",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "users",
-                "{{validID}}"
+                "{{Valid_Id}}"
               ]
             },
-            "description": "This request sends **GET** to `{{baseUrl}}/users/{{validID}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/{{validID}}`\n\n**What it does**\n\nFetches a single user’s details by their ID.\n\n**Inputs**\n\n- **Path param:** `validID` – ID of the user to retrieve\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain the following keys:\n    \n    - `id`\n        \n    - `email`\n        \n    - `firstName`\n        \n    - `role`\n        \n- Data types should be valid:\n    \n    - `id` → number\n        \n    - `email` → string\n        \n    - `firstName` → string\n        \n    - `role` → string\n        \n- The returned `id` should match the `validID` sent in the URL."
+            "description": "This request sends **GET** to `{{baseUrl}}/users/{{Valid_ID}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/{{Valid_ID}}`\n\n**What it does**\n\nFetches a single user’s details by their ID.\n\n**Inputs**\n\n- **Path param:** `Valid_ID` – ID of the user to retrieve from CSV file.\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain the following keys:\n    \n    - `id`\n        \n    - `email`\n        \n    - `firstName`\n        \n    - `role`\n        \n- Data types should be valid:\n    \n    - `id` → number\n        \n    - `email` → string\n        \n    - `firstName` → string\n        \n    - `role` → string\n        \n- The returned `id` should match the `Valid_ID` sent in the URL."
           },
           "response": []
         },
@@ -1625,12 +1643,18 @@
               "listen": "test",
               "script": {
                 "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
                   "pm.test('404 Status Code', function(){\r",
                   "    pm.response.to.have.status(404);    \r",
                   "});\r",
                   "\r",
-                  "const resp = pm.response.json();\r",
-                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "// obtaining the invalidID value from the environment variables\r",
+                  "//const InvalidID =  parseInt(pm.environment.get('invalidID'));\r",
+                  "\r",
+                  "// obtaining the invalidID value from the CSV file\r",
+                  "const InvalidID =  pm.iterationData.get(\"Invalid_Id\");\r",
+                  "\r",
                   "pm.test('User Not Found', function(){\r",
                   "    pm.expect(resp).to.have.property('message','User with id \\'' +InvalidID+ '\\' not found');\r",
                   "});"
@@ -1662,16 +1686,16 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{baseUrl}}/users/{{invalidID}}",
+              "raw": "{{baseUrl}}/users/{{Invalid_Id}}",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "users",
-                "{{invalidID}}"
+                "{{Invalid_Id}}"
               ]
             },
-            "description": "This request sends **GET** to `{{baseUrl}}/users/{{invalidID}}`.\n\n**Endpoint:**`GET {{baseUrl}}/users/{{invalidID}}`\n\n**What it does**\n\nAttempts to fetch a user using an **invalid or non-existent user ID**.\n\n**Inputs**\n\n- **Path param:** `invalidID` – ID of the user that does not exist\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should contain a clear error message:\n    \n    - `\"User with id {{invalidID}} not found\"`"
+            "description": "This request sends **GET** to `{{baseUrl}}/users/{{Invalid_ID}}`.\n\n**Endpoint:**`GET {{baseUrl}}/users/{{Invalid_ID}}`\n\n**What it does**\n\nAttempts to fetch a user using an **invalid or non-existent user ID** from CSV file.\n\n**Inputs**\n\n- **Path param:** I`nvalid_ID` – ID of the user that does not exist\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should contain a clear error message:\n    \n    - `\"User with id {{Invalid_ID}} not found\"`"
           },
           "response": []
         },
@@ -1697,7 +1721,13 @@
                   "});\r",
                   "\r",
                   "const users = resp.users;\r",
-                  "const searchWord =  pm.collectionVariables.get('searchName');\r",
+                  "\r",
+                  "// obtaining search word from the collection variables .\r",
+                  "//const searchWord = pm.collectionVariables.get('searchName') -> for collectionVariables not collectionVariables\r",
+                  "\r",
+                  "// obtaining the search word from the CSV file . \r",
+                  "const searchWord =  pm.iterationData.get(\"Search_Name\");\r",
+                  "\r",
                   "pm.test('First Name has the Searched Word', function(){\r",
                   "   users.forEach(\r",
                   "        (v,k)=>{\r",
@@ -1732,7 +1762,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{baseUrl}}/users/search?q={{searchName}}",
+              "raw": "{{baseUrl}}/users/search?q={{Search_Name}}",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -1743,11 +1773,11 @@
               "query": [
                 {
                   "key": "q",
-                  "value": "{{searchName}}"
+                  "value": "{{Search_Name}}"
                 }
               ]
             },
-            "description": "This request sends **GET** to `{{baseUrl}}/users/search?q={{searchName}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/search?q={{searchName}}`\n\n**What it does**\n\nSearches for users whose first names contain the specified search keyword.\n\n**Inputs**\n\n- **Query parameter:**\n    \n    - `q` → The search keyword, saved in `{{searchName}}`\n        \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- The `users` array should not be empty.\n    \n- Each user in the results should have a `firstName` that **includes the search keyword** provided in the query parameter."
+            "description": "This request sends **GET** to `{{baseUrl}}/users/search?q={{Search_Name}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/search?q={{Search_Name}}`\n\n**What it does**\n\nSearches for users whose first names contain the specified search keyword.\n\n**Inputs**\n\n- **Query parameter:**\n    \n    - `q` → The search keyword, saved in `{{Search_Name}}` in CSV file.\n        \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- The `users` array should not be empty.\n    \n- Each user in the results should have a `firstName` that **includes the search keyword** provided in the query parameter."
           },
           "response": []
         },
@@ -1800,7 +1830,7 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{baseUrl}}/users/search?q={{invalidSearch}}",
+              "raw": "{{baseUrl}}/users/search?q={{Invalid_Search}}",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -1811,11 +1841,11 @@
               "query": [
                 {
                   "key": "q",
-                  "value": "{{invalidSearch}}"
+                  "value": "{{Invalid_Search}}"
                 }
               ]
             },
-            "description": "This request sends **GET** to `{{baseUrl}}/users/search?q={{invalidSearch}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/search?q={{invalidSearch}}`\n\n---\n\n**What it does**\n\nSearches for users using a keyword that does **not match any user** in the system.\n\n**Inputs**\n\n- **Query parameter:**\n    \n    - `q` → The invalid search keyword, saved in `{{invalidSearch}}`\n        \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- The response should indicate an **empty result set**:\n    \n    - `total` → `0`\n        \n    - `users` → empty array (if included)"
+            "description": "This request sends **GET** to `{{baseUrl}}/users/search?q={{Invalid_Search}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/search?q={{Invalid_Search}}`\n\n---\n\n**What it does**\n\nSearches for users using a keyword that does **not match any user** in the system.\n\n**Inputs**\n\n- **Query parameter:**\n    \n    - `q` → The invalid search keyword, saved in `{{Invalid_Search}}`\n        \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- The response should indicate an **empty result set**:\n    \n    - `total` → `0`\n        \n    - `users` → empty array (if included)"
           },
           "response": []
         },
@@ -1840,10 +1870,15 @@
                   "    pm.expect(resp).to.have.property(\"id\");\r",
                   "});\r",
                   "\r",
+                  "// obtaining expected values from the CSV file\r",
+                  "const ExpectedFirstName = pm.iterationData.get(\"UserFirstName\");\r",
+                  "const ExpectedLastName = pm.iterationData.get(\"UserLastName\");\r",
+                  "const ExpectedAge = pm.iterationData.get(\"UserAge\");\r",
+                  "\r",
                   "pm.test('Returned Fields Match Input', function(){\r",
-                  "    pm.expect(resp.firstName).to.be.equal(\"Easter\");\r",
-                  "    pm.expect(resp.lastName).to.be.equal(\"Bunny\");  \r",
-                  "    pm.expect(resp.age).to.be.equal(5);\r",
+                  "    pm.expect(resp.firstName).to.be.equal(ExpectedFirstName);\r",
+                  "    pm.expect(resp.lastName).to.be.equal(ExpectedLastName);  \r",
+                  "    pm.expect(resp.age).to.be.equal(ExpectedAge);\r",
                   "});"
                 ],
                 "type": "text/javascript",
@@ -1857,7 +1892,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"firstName\": \"Easter\",\r\n    \"lastName\": \"Bunny\",\r\n    \"age\": 5\r\n}",
+              "raw": "{\r\n    \"firstName\": \"{{UserFirstName}}\",\r\n    \"lastName\": \"{{UserLastName}}\",\r\n    \"age\": {{UserAge}}\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1874,7 +1909,69 @@
                 "add"
               ]
             },
-            "description": "This request sends **POST** to `{{baseUrl}}/users/add`.\n\n**Endpoint:** `POST {{baseUrl}}/users/add`\n\n**What it does**\n\nCreates a new user in the system with the provided details.\n\n**Inputs**\n\n- **Request body:**\n    \n    - `firstName` (string) – User’s first name\n        \n    - `lastName` (string) – User’s last name\n        \n    - `age` (number) – User’s age\n        \n\n**Expected behavior**\n\n- Status should be **201 Created**.\n    \n- Response should be a **JSON object**.\n    \n- Response should include an `id` for the newly created user.\n    \n- The returned fields (`firstName`, `lastName`, `age`) should **match the input values** provided in the request body."
+            "description": "This request sends **POST** to `{{baseUrl}}/users/add`.\n\n**Endpoint:** `POST {{baseUrl}}/users/add`\n\n**What it does**\n\nCreates a new user in the system with the provided details.\n\n**Inputs from CSV file:**\n\n- **Request body:**\n    \n    - `firstName` (string) – User’s first name\n        \n    - `lastName` (string) – User’s last name\n        \n    - `age` (number) – User’s age\n        \n\n**Expected behavior**\n\n- Status should be **201 Created**.\n    \n- Response should be a **JSON object**.\n    \n- Response should include an `id` for the newly created user.\n    \n- The returned fields (`firstName`, `lastName`, `age`) should **match the input values** provided in the request body."
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH /users /id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const resp = pm.response.json();\r",
+                  "\r",
+                  "pm.test('200 Status Code', function(){\r",
+                  "    pm.response.to.have.status(200);    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response is json object', function(){\r",
+                  "    pm.expect(resp).to.be.an('object');    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test('Response has an id', function(){\r",
+                  "    pm.expect(resp).to.have.property(\"id\");\r",
+                  "});\r",
+                  "\r",
+                  "// obtaining expected values from the CSV file\r",
+                  "const ExpectedFirstName = pm.iterationData.get(\"UserFirstName\");\r",
+                  "const ExpectedEmail = pm.iterationData.get(\"UserEmail\");\r",
+                  "\r",
+                  "pm.test('Returned Fields Match Input', function(){\r",
+                  "    pm.expect(resp.firstName).to.be.equal(ExpectedFirstName);\r",
+                  "    pm.expect(resp.email).to.be.equal(ExpectedEmail);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"firstName\": \"{{UserFirstName}}\",\r\n    \"email\": \"{{UserEmail}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/{{Valid_Id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "{{Valid_Id}}"
+              ]
+            },
+            "description": "This request sends **PATCH** to `{{baseUrl}}/users/{{Valid_ID}}`.\n\n**Endpoint:** **PATCH** `{{baseUrl}}/users/add/{{Valid_ID}}`\n\n**What it does**\n\nCreates a new user in the system with the provided details from CSV file.\n\n**Inputs**\n\n- **Request body:**\n    \n    - `firstName` (string) – User’s first name\n        \n    - Email (string) – User’s email.\n        \n\n**Expected behavior**\n\n- Status should be **200 Created**.\n    \n- Response should be a **JSON object**.\n    \n- Response should include an `id` for the newly created user.\n    \n- The returned fields (`firstName`, email ) should **match the input values** provided in the request body."
           },
           "response": []
         },
@@ -1913,16 +2010,16 @@
               "raw": "{\r\n  \"username\": \"UpdatedUser\"\r\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/users/{{validID}}",
+              "raw": "{{baseUrl}}/users/{{Valid_Id}}",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "users",
-                "{{validID}}"
+                "{{Valid_Id}}"
               ]
             },
-            "description": "This request sends **DELETE** to `{{baseUrl}}/users/{{validID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/users/{{validID}}`\n\n**What it does**\n\nDeletes an existing user identified by their ID.\n\n**Inputs**\n\n- **Path param:** `validID` – ID of the user to delete\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a property:\n    \n    - `isDeleted` → `true`"
+            "description": "This request sends **DELETE** to `{{baseUrl}}/users/{{Valid_ID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/users/{{Valid_ID}}`\n\n**What it does**\n\nDeletes an existing user identified by their ID obtained from CSV file.\n\n**Inputs**\n\n- **Path param:** `Valid_ID` – ID of the user to delete\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a property:\n    \n    - `isDeleted` → `true`"
           },
           "response": []
         },
@@ -1943,7 +2040,12 @@
                   "    pm.expect(resp).to.be.an('object');    \r",
                   "});\r",
                   "\r",
-                  "const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "// obtaining the InvalidID value from environment variables\r",
+                  "//const InvalidID =  parseInt(pm.environment.get('invalidID')); \r",
+                  "\r",
+                  "// obtaining the InvalidID value  from the CSV file\r",
+                  "const InvalidID =  pm.iterationData.get(\"Invalid_Id\");\r",
+                  "\r",
                   "pm.test('User Not Found', function(){\r",
                   "    pm.expect(resp).to.have.property('message','User with id \\'' +InvalidID+ '\\' not found');\r",
                   "});\r",
@@ -1964,16 +2066,16 @@
               "raw": "{\r\n  \"username\": \"UpdatedUser\"\r\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/users/{{invalidID}}",
+              "raw": "{{baseUrl}}/users/{{Invalid_Id}}",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "users",
-                "{{invalidID}}"
+                "{{Invalid_Id}}"
               ]
             },
-            "description": "This request sends **DELETE** to `{{baseUrl}}/users/{{invalidID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/users/{{invalidID}}`\n\n**What it does**\n\nAttempts to delete a user using an **invalid or non-existent user ID**.\n\n**Inputs**\n\n- **Path param:** `invalidID` – ID of the user that does not exist\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a clear error message:\n    \n    - `\"User with id {{invalidID}} not found\"`"
+            "description": "This request sends **DELETE** to `{{baseUrl}}/users/{{Invalid_ID}}`.\n\n**Endpoint:** `DELETE {{baseUrl}}/users/{{Invalid_ID}}`\n\n**What it does**\n\nAttempts to delete a user using an **invalid or non-existent user ID** obtained from CSV file.\n\n**Inputs**\n\n- **Path param:** I`nvalid_ID` – ID of the user that does not exist\n    \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **404 Not Found**.\n    \n- Response should be a **JSON object**.\n    \n- Response should contain a clear error message:\n    \n    - `\"User with id {{Invalid_ID}} not found\"`"
           },
           "response": []
         }
