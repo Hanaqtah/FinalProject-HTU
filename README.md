@@ -52,9 +52,7 @@ Purpose: To identify system degradation, connection overhead, or potential resou
 
 ## 4. Execution
 To run these tests, ensure you have k6 installed and execute the following commands in your terminal:
-
-# To run the Smoke Test
+** To run the Smoke Test ** 
 k6 run SmokeTest.js
-
-# To run the Load Test
+** To run the Load Test **
 k6 run LoadTest.js
