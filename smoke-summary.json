@@ -1,0 +1,225 @@
+{
+    "root_group": {
+        "checks": {
+            "200 Status Code": {
+                "name": "200 Status Code",
+                "path": "::200 Status Code",
+                "id": "9f8e9cf01c5d0ca95587a514cde0cf6d",
+                "passes": 489,
+                "fails": 0
+            },
+            "content-type = application/json": {
+                "name": "content-type = application/json",
+                "path": "::content-type = application/json",
+                "id": "5ed9edfafd1975903775b798db54c802",
+                "passes": 163,
+                "fails": 0
+            },
+            "carts property is json array": {
+                "name": "carts property is json array",
+                "path": "::carts property is json array",
+                "id": "26b89552442835cb47a26fea3c5b16a3",
+                "passes": 163,
+                "fails": 0
+            },
+            "response is json obj": {
+                "fails": 0,
+                "name": "response is json obj",
+                "path": "::response is json obj",
+                "id": "6669c517c832a66be37fc721eb567868",
+                "passes": 163
+            },
+            "carts array length > 0": {
+                "name": "carts array length > 0",
+                "path": "::carts array length > 0",
+                "id": "5453f39ddbf3ef248dd8d33e905aa8b5",
+                "passes": 163,
+                "fails": 0
+            },
+            "All carts have required keys": {
+                "name": "All carts have required keys",
+                "path": "::All carts have required keys",
+                "id": "e6be463f950c94c3bdf7c7d7eb744906",
+                "passes": 163,
+                "fails": 0
+            },
+            "Content-Type = application/json": {
+                "name": "Content-Type = application/json",
+                "path": "::Content-Type = application/json",
+                "id": "9375ed92d13085d7fd19767e94e75a9b",
+                "passes": 163,
+                "fails": 0
+            },
+            "Response is json object": {
+                "name": "Response is json object",
+                "path": "::Response is json object",
+                "id": "6c44a73a4ad22cbe1735f07fd7e894cd",
+                "passes": 163,
+                "fails": 0
+            },
+            "Valid required keys": {
+                "name": "Valid required keys",
+                "path": "::Valid required keys",
+                "id": "511566e61778389fa9f0a3ce92aeb06d",
+                "passes": 163,
+                "fails": 0
+            },
+            "Valid key Types": {
+                "id": "4e288f7f035b402bce9afbcc099a4cf4",
+                "passes": 163,
+                "fails": 0,
+                "name": "Valid key Types",
+                "path": "::Valid key Types"
+            },
+            "ReturnedID = RequestedID": {
+                "fails": 0,
+                "name": "ReturnedID = RequestedID",
+                "path": "::ReturnedID = RequestedID",
+                "id": "86fac377cac0ec9c45e9ee4c3cf1b604",
+                "passes": 163
+            },
+            "Returned Response is an Object": {
+                "id": "39a4d0253b8a899e83a4a85c0b4ad4c3",
+                "passes": 163,
+                "fails": 0,
+                "name": "Returned Response is an Object",
+                "path": "::Returned Response is an Object"
+            },
+            "Retuned Response is Not Empty": {
+                "name": "Retuned Response is Not Empty",
+                "path": "::Retuned Response is Not Empty",
+                "id": "ea5cd071e2df0fa773eecf9b80a7cf26",
+                "passes": 163,
+                "fails": 0
+            },
+            "First Name has the Searched Word": {
+                "name": "First Name has the Searched Word",
+                "path": "::First Name has the Searched Word",
+                "id": "0187f70d24f92a5a8d8c2bdaf6c2a00f",
+                "passes": 163,
+                "fails": 0
+            }
+        },
+        "name": "",
+        "path": "",
+        "id": "d41d8cd98f00b204e9800998ecf8427e",
+        "groups": {}
+    },
+    "metrics": {
+        "http_reqs": {
+            "count": 489,
+            "rate": 16.131686978885273
+        },
+        "http_req_sending": {
+            "max": 6.5603,
+            "p(90)": 0.5449999999999999,
+            "p(95)": 0.7053199999999962,
+            "avg": 0.1782306748466257,
+            "min": 0,
+            "med": 0
+        },
+        "checks": {
+            "passes": 2608,
+            "fails": 0,
+            "value": 1
+        },
+        "http_req_blocked": {
+            "max": 210.0705,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 1.2858329243353783,
+            "min": 0,
+            "med": 0
+        },
+        "http_req_waiting": {
+            "med": 159.4229,
+            "max": 570.3247,
+            "p(90)": 170.2152,
+            "p(95)": 177.14984,
+            "avg": 163.31761840490805,
+            "min": 148.6956
+        },
+        "iterations": {
+            "count": 163,
+            "rate": 5.377228992961758
+        },
+        "vus_max": {
+            "value": 3,
+            "min": 3,
+            "max": 3
+        },
+        "iteration_duration": {
+            "med": 519.0002,
+            "max": 1135.9831,
+            "p(90)": 635.6555600000002,
+            "p(95)": 883.30942,
+            "avg": 555.4731515337421,
+            "min": 481.708
+        },
+        "http_req_receiving": {
+            "med": 0.3331,
+            "max": 433.6288,
+            "p(90)": 10.307659999999995,
+            "p(95)": 21.249719999999982,
+            "avg": 10.76021186094069,
+            "min": 0
+        },
+        "data_received": {
+            "count": 6159528,
+            "rate": 203197.50027337272
+        },
+        "http_req_duration": {
+            "max": 592.9613,
+            "p(90)": 178.64412,
+            "p(95)": 205.65471999999983,
+            "avg": 174.25606094069522,
+            "min": 149.4503,
+            "med": 161.7884,
+            "thresholds": {
+                "p(95)<300": false,
+                "p(90)<250": false
+            }
+        },
+        "http_req_failed": {
+            "passes": 0,
+            "fails": 489,
+            "thresholds": {
+                "rate<0.01": false
+            },
+            "value": 0
+        },
+        "data_sent": {
+            "count": 66803,
+            "rate": 2203.773180471315
+        },
+        "http_req_connecting": {
+            "min": 0,
+            "med": 0,
+            "max": 4.4859,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 0.022633537832310837
+        },
+        "http_req_tls_handshaking": {
+            "med": 0,
+            "max": 198.7207,
+            "p(90)": 0,
+            "p(95)": 0,
+            "avg": 1.214723517382413,
+            "min": 0
+        },
+        "vus": {
+            "max": 3,
+            "value": 3,
+            "min": 3
+        },
+        "http_req_duration{expected_response:true}": {
+            "med": 161.7884,
+            "max": 592.9613,
+            "p(90)": 178.64412,
+            "p(95)": 205.65471999999983,
+            "avg": 174.25606094069522,
+            "min": 149.4503
+        }
+    }
+}
