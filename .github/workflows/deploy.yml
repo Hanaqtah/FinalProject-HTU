@@ -17,7 +17,7 @@ jobs:
           git reset --hard origin/main
       - name: NewMan Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
-        run: newman run DummyJson.json
+        run: newman run DummyJson.json -e Environment.json
         
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
@@ -27,4 +27,5 @@ jobs:
         working-directory: /home/halahanaqtah/FinalProject-HTU
 
         run: free -h
+
 
