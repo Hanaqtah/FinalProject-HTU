@@ -17,7 +17,7 @@ jobs:
           git reset --hard origin/main
       - name: NewMan Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
-        run: newman run DummyJason.json -e Environment.json -d UsersData.csv
+        run: newman run Postman-Files/DummyJason.json \ -e Postman-Files/Environment.json \ -d Postman-Files/UsersData.csv
         
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
