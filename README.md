@@ -4,7 +4,7 @@
 - The collection covers authentication, products, carts, and users' endpoints, including positive and negative test cases.
 - The users' endpoints, are being tested based on data obtained from csv file.
 
-⋯⋯⋯
+- - -
 
 **NOTE:**
 
