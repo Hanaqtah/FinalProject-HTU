@@ -17,8 +17,7 @@ jobs:
           git reset --hard origin/main
       - name: K6 Run Smoke Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
-        run:  ls -la
-              k6 run SmokeTest.js
+        run:  k6 run SmokeTest.js
         
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
