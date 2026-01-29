@@ -90,7 +90,7 @@ For example, issues related to login behavior and field validation were observed
 
 This bug report collection is intended for testing and learning purposes using the **Sauce Demo** website.
 
-## 7. Conclusion
+## Conclusion
 During the execution of the test cases on **Sauce Demo**, multiple bugs were identified across **login**, **field validation**, **cart functionality**, **checkout processes**, and others.
 
 This collection of bug reports provides a clear overview of defects for tracking, analysis, and resolution prior to production deployment.
