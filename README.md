@@ -52,11 +52,11 @@ src/test/java
  │   └── ProblemUserTestData.java
 
  │
-    pom.xml
+   └── pom.xml
 
-    testng.xml
+ │ └── testng.xml
 
-    README.md
+ │ └── README.md
 
 Test Scenarios Covered
 ---------------------
