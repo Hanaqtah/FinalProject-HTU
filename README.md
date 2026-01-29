@@ -2,11 +2,11 @@
 
 ## Project Overview
 
-This repository contains test cases executed on the \*\*Sauce Demo (Swag Labs)\*\* application.
+This repository contains test cases executed on the **Sauce Demo (Swag Labs)** application.
 
 The goal of this testing effort is to validate core functionalities, ensure correct user flows, and identify functional defects.
 
-\*\*Website URL: \*\* <https://www.saucedemo.com/>
+**Website URL:** <https://www.saucedemo.com/>
 
 ---
 
@@ -14,17 +14,17 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 ### In Scope
 
-\- User authentication (login / logout)
+- User authentication (login / logout)
 
-\- Product listing and sorting
+- Product listing and sorting
 
-\- Add to cart / Remove from cart
+- Add to cart / Remove from cart
 
-\- Products correct images / Products correct description
+- Products correct images / Products correct description
 
-\- Checkout process
+- Checkout process
 
-\- Order confirmation
+- Order confirmation
 
 ### Out of Scope
 
@@ -119,4 +119,4 @@ Each test case includes:
 
 Core functionalities of the Sauce Demo application are working as expected.
 
-Some issues were identified when logged in with different users. **As an example**, login and field validation problems occurred when testing with problem_user, which should be addressed before production-like testing.
+Some issues were identified when logged in with different users. **As an example**, login and field validation problems occurred when testing with **problem_user**, which should be addressed before production-like testing.
