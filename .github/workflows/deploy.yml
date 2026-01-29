@@ -15,9 +15,10 @@ jobs:
         run: |
           git fetch origin main
           git reset --hard origin/main
-      - name: Smoke Test
+      - name: K6 Run Smoke Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
-        run: k6 run SmokeTest.js
+        run:  ls -la
+              k6 run SmokeTest.js
         
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
