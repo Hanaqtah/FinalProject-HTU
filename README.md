@@ -38,17 +38,25 @@ Maven Dependencies
 Project Structure
 -----------------
 src/test/java
+
  ├── Standard_User_Cases
+
  │   ├── StandardUserTestCases.java
+
  │   └── StandardUserTestData.java
- │
+ 
  ├── Problem_User_Cases
+
  │   ├── ProblemUserTestCases.java
+
  │   └── ProblemUserTestData.java
+
  │
-pom.xml
-testng.xml
-README.md
+    pom.xml
+
+    testng.xml
+
+    README.md
 
 Test Scenarios Covered
 ---------------------
