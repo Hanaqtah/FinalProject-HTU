@@ -31,41 +31,40 @@ Bugs were identified during functional testing by comparing \*\*expected results
 Whenever a deviation was observed, a bug report was created and linked to its corresponding test case.
 
 ## Bug Report Structure
-
 Each bug report includes the following information:
 
-- Bug ID
+## 1. Bug ID
+- **ID:** BUG-XX  
+- **Name:** Short descriptive title of the bug  
+- **Reporter:** Hala Hanaqtah  
+- **Submit Date:** YYYY-MM-DD
 
-- ID
-- Name
-- Reporter
-- Submit Date
+## 2. Bug Overview
+- **Summary:** Brief explanation of the bug  
+- **Screenshot:** (Attach screenshot if available)  
+- **URL:** https://www.saucedemo.com/
 
-- Bug Overview
+## 3. Environment
+- **Platform:** Web Application  
+- **OS:** Windows 
+- **Browser:** Chrome 
 
-- Summery
-- Screenshot
-- URL
+## 4. Bug Details
+- **Description:** Detailed description of the bug  
+- **Steps to Reproduce:**  
+  1. Step one  
+  2. Step two  
+  3. Step three  
+- **Expected Result:** What should happen  
+- **Actual Result:** What actually happens
 
-- Environment
+## 5. Bug Tracking
+- **Priority:** Low / Medium / High  
+- **Severity:** Low / Medium / High 
 
-- Platform
-- OS
-- Browser
+## 6. Notes
+Additional information, observations, or context (optional)
 
-- Bug Details
-
-- Description
-- Steps to Reproduce
-- Expected Result
-- Actual Result
-
-- Bug Tracking
-
-- Priority
-- Severity
-
-- Notes
 
 ## User Accounts Tested
 
