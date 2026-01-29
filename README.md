@@ -54,6 +54,6 @@ The Load Test simulates a more realistic production scenario to observe how the 
 ## 4. Execution
 To run these tests, ensure you have k6 installed and execute the following commands in your terminal:
 
-- To run the Smoke Test k6 run SmokeTest.js
+- To run the Smoke Test **k6 run SmokeTest.js**
 
-- To run the Load Test k6 run LoadTest.js
+- To run the Load Test **k6 run LoadTest.js**
