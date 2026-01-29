@@ -4,21 +4,15 @@
 - The collection covers authentication, products, carts, and users' endpoints, including positive and negative test cases.
 - The users' endpoints, are being tested based on data obtained from csv file.
 
---
-
 **NOTE:**
 
 - DummyJSON simulates write operations (POST/PUT/PATCH/DELETE), but data is not persisted on the server.
-
---
 
 **Base Information:**
 
 - **Base URL:** <https://dummyjson.com>
 - **API Docs:** <https://dummyjson.com/docs>
 - **Content-Type:** application/json
-
---
 
 **Project Structure**
 
@@ -29,14 +23,10 @@
 - HTML Report
 - README.md
 
---
-
 **Environment Variables:**
 
 - Environment variables are automatically updated using Postman scripts.
 - The environment file contains reusable variables used across requests:
-
---
 
 | **Variable Name** | **Description** |
 | --- | --- |
@@ -50,8 +40,6 @@
 | refresh_token | Token used to request a new access token |
 | invalidSearch | Search keyword used for negative search test cases |
 
---
-
 **Collection Variables:**
 
 - These variables are defined at the **collection level** and are used across multiple requests.
@@ -64,8 +52,6 @@
 | NewProductPrice | 29.99 | Price used when creating a new product |
 | updatedTitle | Chicken Nuggets | Updated title used in product update requests |
 | searchName | Emily | Keyword used for searching users |
-
---
 
 **Authentication Folder**
 
@@ -112,8 +98,6 @@ Assertions:
 
 - Missing token → 401 Unauthorized
 - Invalid token → 400 Unauthorized
-
---
 
 **Products Folder:**
 
@@ -186,8 +170,6 @@ Assertions:
 - Invalid id → 404 Not Found, Response should include a message "Product with id \\'' +InvalidID+ '\\' not found".
 - Invalid search → 200 Status, Total is 0 and Products array is empty.
 - Invalid delete → 404 Not Found, Response should include a message "Product with id '{{invalidID}}' not found".
-
---
 
 **Carts Folder:**
 
@@ -268,8 +250,6 @@ Assertions:
 
 - Invalid id → 404 Not Found, Response should include a message "Cart with id \\'' +InvalidID+ '\\' not found"
 - Invalid delete → 404 Not Found, Response should include a message "Cart with id '{{invalidID}}' not found"
-
---
 
 **Users Folder:**
 
