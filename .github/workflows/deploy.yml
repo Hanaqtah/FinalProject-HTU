@@ -15,6 +15,10 @@ jobs:
         run: |
           git fetch origin main
           git reset --hard origin/main
+      - name: Newman Test
+        working-directory: /home/halahanaqtah/FinalProject-HTU
+        run: newman run DummyJason.json -e Environment.json -d UsersData.csv
+          
       - name: K6 Run Smoke Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
         run: | 
