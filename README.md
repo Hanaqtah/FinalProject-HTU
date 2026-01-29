@@ -1,6 +1,6 @@
-\# Sauce Demo - Test Case Report
+# Sauce Demo - Test Case Report
 
-\## Project Overview
+## Project Overview
 
 This repository contains test cases executed on the \*\*Sauce Demo (Swag Labs)\*\* application.
 
@@ -10,9 +10,9 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 \---
 
-\## Test Scope
+## Test Scope
 
-\### In Scope
+### In Scope
 
 \- User authentication (login / logout)
 
@@ -26,15 +26,15 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 \- Order confirmation
 
-\### Out of Scope
+### Out of Scope
 
 \- Security testing
 
-\- Cross-browser testing
+\- Cross-browser testing (only tested on Chrome browser)
 
 \---
 
-\## Test Environment
+## Test Environment
 
 \- \*\*Website: \*\* Sauce Demo (Swag Labs)
 
@@ -48,7 +48,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 \---
 
-\## Test Execution Summary
+## Test Execution Summary
 
 | Metric | Count |
 
@@ -62,7 +62,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 \---
 
-\## Test Case Structure
+## Test Case Structure
 
 Each test case includes:
 
@@ -86,9 +86,9 @@ Each test case includes:
 
 \---
 
-\## Sample Test Cases
+## Sample Test Cases
 
-\### TC-01: Valid Login
+### TC-01: Valid Login
 
 \*\*Description: \*\* Verify Successful Login with Valid Credentials.
 
@@ -115,7 +115,7 @@ Each test case includes:
 
 \---
 
-\## Conclusion
+## Conclusion
 
 Core functionalities of the Sauce Demo application are working as expected.
 
