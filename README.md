@@ -28,23 +28,23 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 ### Out of Scope
 
-\- Security testing
+- Security testing
 
-\- Cross-browser testing (only tested on Chrome browser)
+- Cross-browser testing (only tested on Chrome browser)
 
 ---
 
 ## Test Environment
 
-\- **Website:** Sauce Demo (Swag Labs)
+- **Website:** Sauce Demo (Swag Labs)
 
-\- **Testing Type:** Functional Testing
+- **Testing Type:** Functional Testing
 
-\- **Tools Used:** Selenium / Manual Testing
+- **Tools Used:** Selenium / Manual Testing
 
-\- **Browser:** Google Chrome
+- **Browser:** Google Chrome
 
-\- **OS:** Windows 11
+- **OS:** Windows 11
 
 ---
 
@@ -66,23 +66,23 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 Each test case includes:
 
-\- Test Case ID
+- Test Case ID
 
-\- Description
+- Description
 
-\- Test Steps
+- Test Steps
 
-\- Test Data
+- Test Data
 
-\- Expected Result
+- Expected Result
 
-\- Actual Result
+- Actual Result
 
-\- Status
+- Status
 
-\- Evidences
+- Evidences
 
-\- Notes if any
+- Notes if any
 
 ---
 
@@ -109,7 +109,7 @@ Each test case includes:
 
 **Expected Result:**
 
-\- The user should be successfully logged in immediately and redirected to (Products) page.
+- The user should be successfully logged in immediately and redirected to (Products) page.
 
 **Status:** ✅ Passed
 
