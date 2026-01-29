@@ -8,7 +8,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 \*\*Website URL: \*\* <https://www.saucedemo.com/>
 
-\---
+---
 
 ## Test Scope
 
@@ -32,21 +32,21 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 \- Cross-browser testing (only tested on Chrome browser)
 
-\---
+---
 
 ## Test Environment
 
-\- \*\*Website: \*\* Sauce Demo (Swag Labs)
+\- **Website:** Sauce Demo (Swag Labs)
 
-\- \*\*Testing Type: \*\* Functional Testing
+\- **Testing Type:** Functional Testing
 
-\- \*\*Tools Used: \*\* Selenium / Manual Testing
+\- **Tools Used:** Selenium / Manual Testing
 
-\- \*\*Browser: \*\* Google Chrome
+\- **Browser:** Google Chrome
 
-\- \*\*OS: \*\* Windows 11
+\- **OS:** Windows 11
 
-\---
+---
 
 ## Test Execution Summary
 
@@ -60,7 +60,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 | Failed | 19 |
 
-\---
+---
 
 ## Test Case Structure
 
@@ -84,15 +84,15 @@ Each test case includes:
 
 \- Notes if any
 
-\---
+---
 
 ## Sample Test Cases
 
 ### TC-01: Valid Login
 
-\*\*Description: \*\* Verify Successful Login with Valid Credentials.
+**Description:** Verify Successful Login with Valid Credentials.
 
-\*\*Test Steps: \*\*
+**Test Steps:**
 
 1- Open SauceDemo website.
 
@@ -102,18 +102,18 @@ Each test case includes:
 
 4- Click the "Login" button.
 
-\*\*Test Data: \*\*
+**Test Data:**
 
 - UserName: standard_user,
 - Password: secret_sauce.
 
-\*\*Expected Result: \*\*
+**Expected Result:**
 
 \- The user should be successfully logged in immediately and redirected to (Products) page.
 
-\*\*Status: \*\* ✅ Passed
+**Status:** ✅ Passed
 
-\---
+---
 
 ## Conclusion
 
