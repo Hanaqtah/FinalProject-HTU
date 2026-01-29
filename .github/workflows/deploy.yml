@@ -21,7 +21,7 @@ jobs:
 
       - name: K6 Smoke Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
-        run: k6 run SmokeTest.js
+        run: k6 run Final_K6/SmokeTest.js
         
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
