@@ -2,8 +2,6 @@
 
 This repository contains k6 performance testing scripts for the **DummyJSON API**. The goal of this testing suite is to verify the stability, reliability, and responsiveness of the API under different traffic conditions.
 
-___
-
 ## 1. Objectives
 The performance testing is designed to:
 
