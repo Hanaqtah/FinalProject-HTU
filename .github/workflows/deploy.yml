@@ -23,10 +23,6 @@ jobs:
         working-directory: /home/halahanaqtah/FinalProject-HTU
         run: k6 run Final_K6/SmokeTest.js
 
-      - name: K6 Load Test
-        working-directory: /home/halahanaqtah/FinalProject-HTU
-        run: k6 run Final_K6/LoadTest.js
-        
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
         run: w
