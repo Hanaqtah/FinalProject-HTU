@@ -18,7 +18,11 @@ jobs:
       - name: Newman Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
         run: newman run DummyJson.json -e Environment.json -d UsersData.csv
-          
+
+      - name: K6 Smoke Test
+        working-directory: /home/halahanaqtah/FinalProject-HTU
+        run: k6 run SmokeTest.js
+        
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
         run: w
