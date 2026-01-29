@@ -18,6 +18,10 @@ jobs:
       - name: NewMan Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
         run: newman run Postman-Files/DummyJason.json \ -e Postman-Files/Environment.json \ -d Postman-Files/UsersData.csv
+
+      - name: Smoke Test
+        working-directory: /home/halahanaqtah/FinalProject-HTU
+        run: k6 run SmokeTest.js
         
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
