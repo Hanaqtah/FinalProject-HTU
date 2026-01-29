@@ -8,7 +8,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 **Website URL:** <https://www.saucedemo.com/>
 
----
+
 
 ## Test Scope
 
@@ -32,7 +32,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 - Cross-browser testing (only tested on Chrome browser)
 
----
+
 
 ## Test Environment
 
@@ -46,7 +46,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 - **OS:** Windows 11
 
----
+
 
 ## Test Execution Summary
 
@@ -60,7 +60,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 | Failed | 19 |
 
----
+
 
 ## Test Case Structure
 
@@ -84,7 +84,7 @@ Each test case includes:
 
 - Notes if any
 
----
+
 
 ## Sample Test Cases
 
@@ -113,7 +113,7 @@ Each test case includes:
 
 **Status:** ✅ Passed
 
----
+
 
 ## Conclusion
 
