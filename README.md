@@ -6,9 +6,7 @@ This repository contains the Test Plan for the SauceDemo web application. The te
 
 ## Application Under Test
 
-SauceDemo
-
-https://www.saucedemo.com/
+SauceDemo -> https://www.saucedemo.com/
 
 ## Testing Objectives
 
