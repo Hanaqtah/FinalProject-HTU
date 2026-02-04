@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains the Test Plan for the SauceDemo web application. The test plan defines the objectives, scope, strategy, environment, and processes used to evaluate the functionality, stability, and performance of the application.
+This repository contains the Test Plan for the SauceDemo web application. The test plan defines the manual and automation testing processes performed on SauceDemo Website.
 
 ## Application Under Test
 
@@ -18,7 +18,7 @@ https://www.saucedemo.com/
 
 - Validate role-based functionality across supported user types
 
-- Assess application response time and workflow stability
+- Assess application response time and stability
 
 ## Test Plan Components
 
