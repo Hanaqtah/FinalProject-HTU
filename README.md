@@ -48,7 +48,7 @@ The test plan is structured into the following main components:
 
 - Schedule, Resources, and Risks
 
-## Test Strategy Conerd
+## Test Strategy Coverd
 
 Testing is conducted using both manual and automated approaches. Unit, integration, and system testing levels are applied to ensure feature correctness and end-to-end workflow validation.
 
