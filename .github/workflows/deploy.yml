@@ -17,11 +17,11 @@ jobs:
           git reset --hard origin/main
       - name: Newman Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
-        run: newman run Postman-Files/DummyJson.json -e  Postman-Files/Environment.json -d  Postman-Files/UsersData.csv
+        run: newman run Postman-Runner/DummyJson.json -e  Postman-Runner/Environment.json -d  Postman-Runner/UsersData.csv
   
       - name: K6 Smoke Test
         working-directory: /home/halahanaqtah/FinalProject-HTU
-        run: k6 run Final_K6/SmokeTest.js
+        run: k6 run K6-Runner/SmokeTest.js
 
       - name: CPU status
         working-directory: /home/halahanaqtah/FinalProject-HTU
