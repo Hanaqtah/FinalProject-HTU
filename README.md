@@ -24,6 +24,7 @@ DummyJSON simulates write operations (POST/PUT/PATCH/DELETE), but data is **not 
 
 ## Environment & Collection Variables
 Variables are used across requests to simplify configuration for **authentication, carts, and products** endpoints, allowing easy updates during test execution.
+
 **Note:**  
 Environment variables are automatically updated during execution  
 
