@@ -15,7 +15,7 @@ The project ensures that users can:
 **Note:**  
 The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to perform these tests.
 
----
+
 
 ## Technologies and Tools
 
@@ -28,7 +28,7 @@ The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to
 - **Notepad++**
 - **Hyper Max APK** (Downloaded for testing)
 
----
+
 
 ## Test Scenarios Covered
 
@@ -51,7 +51,7 @@ The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to
 - Click **Continue** on empty required fields
 - Assert the **error message**: `"Please enter an email address and continue."`
 
----
+
 
 ## How to Run the Tests
 
@@ -64,7 +64,7 @@ The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to
     path: C:\Users\MCC\OneDrive\OneDrive - Hashemite University\Desktop\Mobile\HyperMaxTest.js
     Example: node HyperMaxTest.js
    
----
+
 
 
 7. Ensure the Hyper Max APK is installed on the emulator or device before running the test
@@ -75,7 +75,7 @@ The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to
 - Make sure the emulator is running and ready  
 - Tests will interact with the installed APK automatically
 
----
+
 
 ## Test Reports
 
@@ -83,7 +83,7 @@ The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to
 - Failed assertions throw **Chai AssertionErrors**  
 - Screenshots can be captured using Appium Inspector or WebdriverIO commands for debugging
 
----
+
 
 ## Notes and Assumptions
 
@@ -92,7 +92,7 @@ The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to
 - Product names, quantities, and cart items are validated using **Chai assertions**  
 - Tests are dependent on the current state of the app (cart contents, previously added items)
 
----
+
 
 ## Author
 
