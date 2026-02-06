@@ -48,15 +48,9 @@ Each test case includes:
 
 - Description
 
-- Test Steps
+- Test Steps & Test Data
 
-- Test Data
-
-- Expected Result
-
-- Actual Result
-
-- Status
+- Expected & Actual Result & Status
 
 - Evidences
 
