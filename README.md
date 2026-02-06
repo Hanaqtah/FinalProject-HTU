@@ -14,7 +14,6 @@ The project ensures that users can:
 
 **Note:** The hypermax-25-8-2.apk file was downloaded and installed on local device to perform these tests.
 ---------------------
-
 **Technologies and Tools**
 ---------------------
 - **Node.js**
@@ -25,9 +24,7 @@ The project ensures that users can:
 - **Android Emulator (Pixel 5)**
 - **Notepad++**
 - **Hyper Max APK** (Downloaded for testing)
-
 ---------------------
-
 **Test Scenarios Covered**
 ---------------------
 **Product Browsing and Selection:**
@@ -37,20 +34,17 @@ The project ensures that users can:
 - Select multiple products
 - Verify product names are displayed correctly
 - Add products to the cart
-- 
 ---------------------
 **Cart Operations:**
 
 - Increase product quantity and assert correct quantity
 - Verify **Add to Cart button** and **quantity selection** are displayed
-
 ---------------------
 **Checkout and Validation:**
 
 - Navigate to the checkout page
 - Click **Continue** on empty required fields
 - Assert the **error message**: "Please enter an email address and continue."
-
 ---------------------
 
 **How to Run the Tests**
@@ -64,7 +58,6 @@ The project ensures that users can:
 - Run the test script in another terminal window:
     path: C:\\Users\\MCC\\OneDrive\\OneDrive - Hashemite University\\Desktop\\Mobile\\HyperMaxTest.js
     E.g: node HyperMaxTest.js
-
 - Ensure the Hyper Max APK is installed on the emulator or device before running the test.
 ---------------------
 
@@ -74,14 +67,12 @@ The project ensures that users can:
 - Make sure the emulator is running and ready.
 - Tests will interact with the installed APK automatically**.**
 ---------------------
-
 **Test Reports**
 ---------------------
 - Test execution results are displayed in the terminal.
 - Failed assertions throw **Chai AssertionErrors**.
 - Screenshots can be captured using Appium Inspector or WebdriverIO commands for debugging.
 ---------------------
-
 **Notes and Assumptions**
 ---------------------
 - Tests run on a any valid emulator with Android version compatible with the downloaded HyperMax APK.
@@ -89,7 +80,6 @@ The project ensures that users can:
 - Product names, quantities, and cart items are validated using **Chai assertions**.
 - Tests are dependent on the current state of the app (cart contents, previously added items).
 ---------------------
-
 **Author**
 ---------------------
 **Automation Project - Appium Mobile Testing**  
