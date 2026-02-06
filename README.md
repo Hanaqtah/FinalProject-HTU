@@ -63,3 +63,10 @@ Each test case includes:
 Core functionalities of the Sauce Demo application are working as expected.
 
 Some issues were identified when logged in with different users. 
+
+
+## Author
+
+QA Test Plan - SauceDemo
+
+Prepared for academic and quality assurance practice purposes
