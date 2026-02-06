@@ -77,7 +77,7 @@ The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to
 
 - Test execution results are displayed in the terminal  
 - Failed assertions throw **Chai AssertionErrors**  
-- Screenshots can be captured using **Appium Inspector** or **WebdriverIO commands** for debugging
+- **Screenshots** are captured on the terminal for results
 
 
 
