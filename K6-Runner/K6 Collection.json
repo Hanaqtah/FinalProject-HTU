@@ -1,0 +1,235 @@
+{
+  "info": {
+    "_postman_id": "91832c64-8006-4f5a-938d-e78bcb6e85de",
+    "name": "K6 Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37997805"
+  },
+  "item": [
+    {
+      "name": "Get /carts (list)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"200 Status Code\", function(){\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"content-type = application/json\", function(){\r",
+              "    const ct = pm.response.headers.get('Content-Type');\r",
+              "    pm.expect(ct).to.include('application/json');\r",
+              "});\r",
+              "\r",
+              "const cartsResponseArray = pm.response.json().carts;\r",
+              "pm.test(\"carts property is json array\", function(){\r",
+              "    pm.expect(cartsResponseArray).to.be.an('array');\r",
+              "});\r",
+              "\r",
+              "pm.test(\"response is json obj\", function(){\r",
+              "    pm.expect(pm.response.json()).to.be.an('object');\r",
+              "});\r",
+              "\r",
+              "pm.test(\"carts array length > 0\", function(){\r",
+              "    pm.expect(cartsResponseArray.length).to.be.above(0);\r",
+              "    \r",
+              "});\r",
+              "\r",
+              "pm.test(\"All carts have required keys\", function(){\r",
+              "   // slice(0 inclusive, 6 exclusive), to get part of array\r",
+              "    cartsResponseArray.slice(0,6).forEach(\r",
+              "        (v,k)=>{\r",
+              "            pm.expect(cartsResponseArray[k]).to.include.keys('id','products','total', 'userId');\r",
+              "    });\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"UpdatedUser\"\r\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/carts",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "carts"
+          ]
+        },
+        "description": "This request sends **GET** to {{[https://dummyjson.com}}](https://dummyjson.com)/carts\n\n**Endpoint:** `GET {{https://dummyjson.com}}/carts`\n\n**What it does**\n\nFetches a list of all carts available in the system.\n\n**Inputs**\n\n- No path parameters\n    \n- No request body\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be in **application/json** format.\n    \n- Response should be a **JSON object**.\n    \n- **carts** should be a JSON array.\n    \n- The carts array length should be greater than 0.\n    \n- Each cart object should contain the following keys:\n    \n    - `id`\n        \n    - `products`\n        \n    - `total`\n        \n    - `userId`"
+      },
+      "response": []
+    },
+    {
+      "name": "Get /products /id (single product)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const resp = pm.response.json();\r",
+              "\r",
+              "pm.test('200 Status Code', function(){\r",
+              "    pm.response.to.have.status(200);    \r",
+              "});\r",
+              "\r",
+              "pm.test(\"Content-Type = application/json\", function(){\r",
+              "    const ct = pm.response.headers.get('Content-Type');\r",
+              "    pm.expect(ct).to.include('application/json');\r",
+              "});\r",
+              "\r",
+              "pm.test('Response is json object', function(){\r",
+              "    pm.expect(resp).to.be.an('object');    \r",
+              "});\r",
+              "\r",
+              "pm.test('Valid required keys', function(){\r",
+              "    pm.expect(resp).to.include.keys('id','title','price');    \r",
+              "});\r",
+              "\r",
+              "pm.test('Valid key Types', function(){\r",
+              "    pm.expect(resp.id).to.be.an('number'); \r",
+              "    pm.expect(resp.title).to.be.an('string');    \r",
+              "    pm.expect(resp.price).to.be.an('number');  \r",
+              "});\r",
+              "\r",
+              "const ExpectedID = parseInt(pm.collectionVariables.get('validID'));\r",
+              "pm.test('ReturnedID = RequestedID', function(){\r",
+              "pm.expect(resp.id).to.be.equal(ExpectedID);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/products/{{validID}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "products",
+            "{{validID}}"
+          ]
+        },
+        "description": "This request sends **GET** to {{[https://dummyjson.com}}](https://dummyjson.com)/products/{{productID}}.\n\n**Endpoint:** `GET` {{[https://dummyjson.com}}](https://dummyjson.com)/products/{{productID}}.\n\n**What it does**\n\n- Fetches one product by its ID using a **path parameter**.\n    \n\n**Inputs**\n\n- Path param: `productID.`\n    \n- No request body.\n    \n\n**Expected behavior**\n\n- Status should be **200 OK** for valid IDs.\n    \n- Response should be a **JSON object** with keys`id`, `title`, `price`.\n    \n- Returned `id` should match the sent `id` in URL."
+      },
+      "response": []
+    },
+    {
+      "name": "Get /users/ search",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('200 Status Code', function() {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "const resp = pm.response.json();\r",
+              "pm.test('Returned Response is an Object', function() {\r",
+              "    pm.expect(resp).to.be.an('object');\r",
+              "});\r",
+              "\r",
+              "pm.test('Retuned Response is Not Empty', function(){\r",
+              "    pm.expect(resp.users.length).to.be.above(0);\r",
+              "});\r",
+              "\r",
+              "const users = resp.users;\r",
+              "const searchWord =  pm.collectionVariables.get('searchName');\r",
+              "pm.test('First Name has the Searched Word', function(){\r",
+              "   users.forEach(\r",
+              "        (v,k)=>{\r",
+              "            pm.expect(v.firstName).to.include(searchWord);\r",
+              "    });\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/users/search?q={{searchName}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "users",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "{{searchName}}"
+            }
+          ]
+        },
+        "description": "This request sends **GET** to `{{baseUrl}}/users/search?q={{searchName}}`.\n\n**Endpoint:** `GET {{baseUrl}}/users/search?q={{searchName}}`\n\n**What it does**\n\nSearches for users whose first names contain the specified search keyword.\n\n**Inputs**\n\n- **Query parameter:**\n    \n    - `q` → The search keyword, saved in `{{searchName}}`\n        \n- **Request body:** None\n    \n\n**Expected behavior**\n\n- Status should be **200 OK**.\n    \n- Response should be a **JSON object**.\n    \n- The `users` array should not be empty.\n    \n- Each user in the results should have a `firstName` that **includes the search keyword** provided in the query parameter."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "validID",
+      "value": ""
+    },
+    {
+      "key": "searchName",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}
