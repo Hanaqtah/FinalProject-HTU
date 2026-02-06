@@ -12,7 +12,6 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 ## Test Scope
 
-### In Scope
 
 - User authentication (login / logout)
 
@@ -26,19 +25,12 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 - Order confirmation
 
-### Out of Scope
-
-- Security testing
-
-- Cross-browser testing (only tested on Chrome browser)
 
 
 
 ## Test Execution Summary
 
 | Metric | Count |
-
-|------|------|
 
 | Total Test Cases | 30 |
 
@@ -72,37 +64,8 @@ Each test case includes:
 
 
 
-## Sample Test Cases
-
-### Valid Login
-
-**Description:** Verify Successful Login with Valid Credentials.
-
-**Test Steps:**
-
-1- Open SauceDemo website.
-
-2- Enter "standard_user" in Username field.
-
-3- Enter "secret_sauce" in Password field.
-
-4- Click the "Login" button.
-
-**Test Data:**
-
-- UserName: standard_user,
-- Password: secret_sauce.
-
-**Expected Result:**
-
-- The user should be successfully logged in immediately and redirected to (Products) page.
-
-**Status:** ✅ Passed
-
-
-
 ## Conclusion
 
 Core functionalities of the Sauce Demo application are working as expected.
 
-Some issues were identified when logged in with different users. **As an example**, login and field validation problems occurred when testing with **problem_user**, which should be addressed before production-like testing.
+Some issues were identified when logged in with different users. 
