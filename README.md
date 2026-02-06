@@ -34,20 +34,6 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 
 
-## Test Environment
-
-- **Website:** Sauce Demo (Swag Labs)
-
-- **Testing Type:** Functional Testing
-
-- **Tools Used:** Selenium / Manual Testing
-
-- **Browser:** Google Chrome
-
-- **OS:** Windows 11
-
-
-
 ## Test Execution Summary
 
 | Metric | Count |
@@ -66,7 +52,7 @@ The goal of this testing effort is to validate core functionalities, ensure corr
 
 Each test case includes:
 
-- Test Case ID
+- ID
 
 - Description
 
@@ -88,7 +74,7 @@ Each test case includes:
 
 ## Sample Test Cases
 
-### TC-01: Valid Login
+### Valid Login
 
 **Description:** Verify Successful Login with Valid Credentials.
 
