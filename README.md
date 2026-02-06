@@ -67,6 +67,6 @@ Some issues were identified when logged in with different users.
 
 ## Author
 
-QA Test Plan - SauceDemo
+QA Test Cases Report - SauceDemo
 
 Prepared for academic and quality assurance practice purposes
