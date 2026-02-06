@@ -28,67 +28,33 @@ Bug reports included in this repository cover issues related to:
 
 Bugs were identified during functional testing by comparing \*\*expected results\*\* with \*\*actual results\*\* for each executed test case.
 
-Whenever a deviation was observed, a bug report was created and linked to its corresponding test case.
+Whenever a deviation was observed, **a bug report** was created and **linked to its corresponding test case**.
+
+This collection of bug reports provides a **clear overview of defects** for tracking, analysis, and resolution prior to production deployment.
 
 ## Bug Report Structure
 Each bug report includes the following information:
 
-## 1. Bug ID
-- **ID:** BUG-XX  
-- **Name:** Short descriptive title of the bug  
-- **Reporter:** Hala Hanaqtah  
-- **Submit Date:** YYYY-MM-DD
+  1. Bug ID
 
-## 2. Bug Overview
-- **Summary:** Brief explanation of the bug  
-- **Screenshot:** (Attach screenshot if available)  
-- **URL:** https://www.saucedemo.com/
+  2. Bug Overview
 
-## 3. Environment
-- **Platform:** Web Application  
-- **OS:** Windows 
-- **Browser:** Chrome 
+  3. Environment
 
-## 4. Bug Details
-- **Description:** Detailed description of the bug  
-- **Steps to Reproduce:**  
-  1. Step one  
-  2. Step two  
-  3. Step three  
-- **Expected Result:** What should happen  
-- **Actual Result:** What actually happens
+  4. Bug Details
 
-## 5. Bug Tracking
-- **Priority:** Low / Medium / High  
-- **Severity:** Low / Medium / High 
+  5. Bug Tracking
 
-## 6. Notes
-Additional information, observations, or context (optional)
+  6. Notes
 
 
 ## User Accounts Tested
 
-The following Sauce Demo user types were used during testing:
+**All user roles** on Sauce Demo were used during testing:
 
-- problem_user
 
-- performance_glitch_user
+## Author
 
-- locked_out_user
+QA Bug Reports - SauceDemo
 
-- visual_user
-
-- error_user
-
-## Known Issue Example
-
-Several issues were identified during testing.
-
-For example, issues related to login behavior and field validation were observed when logging in with different user accounts.
-
-## Conclusion
-This bug report collection is intended for testing and learning purposes using the **Sauce Demo** website.
-
-During the execution of the test cases, multiple bugs were identified across **login**, **field validation**, **cart functionality**, **checkout processes**, and others.
-
-This collection of bug reports provides a clear overview of defects for tracking, analysis, and resolution prior to production deployment.
+Prepared for academic and quality assurance practice purposes
