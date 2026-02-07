@@ -14,6 +14,8 @@ The project ensures that users can:
 
 **Note:**  
 The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to perform these tests.
+You can find the **HyperMax APK** in the **project’s release** section.
+**Download it here: hypermax-25-8-2.apk**
 
 
 
