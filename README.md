@@ -14,9 +14,12 @@ The project ensures that users can:
 
 **Note:**  
 The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to perform these tests.
+
 You can find the **HyperMax APK** in the **project’s release** section.
 
-**For Download** click here: https://github.com/Hanaqtah/FinalProject-HTU/releases/download/v1.0.0/hypermax-25-8-2.apk
+**For Download**,
+
+click here: https://github.com/Hanaqtah/FinalProject-HTU/releases/download/v1.0.0/hypermax-25-8-2.apk
 
 
 
