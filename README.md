@@ -12,14 +12,14 @@ The project ensures that users can:
 - Remove products from the cart
 - Attempt checkout and handle empty field validations
 
-**Note:**  
-The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to perform these tests.
+**Notes:**  
+- The `hypermax-25-8-2.apk` file was downloaded and installed on a local device to perform these tests.
 
-You can find the **HyperMax APK** in the **project’s release** section.
+- You can find the **HyperMax APK** in the **project’s release** section.
 
-**For Download**,
+- **For Download**,
 
-click here: https://github.com/Hanaqtah/FinalProject-HTU/releases/download/v1.0.0/hypermax-25-8-2.apk
+    click here: https://github.com/Hanaqtah/FinalProject-HTU/releases/download/v1.0.0/hypermax-25-8-2.apk
 
 
 
@@ -32,7 +32,7 @@ click here: https://github.com/Hanaqtah/FinalProject-HTU/releases/download/v1.0.
 - **Appium Inspector**
 - **Android Emulator (Pixel 5)**
 - **Notepad++**
-- **Hyper Max APK** (Downloaded for testing)
+- **HyperMax APK** (Downloaded for testing)
 
 
 
