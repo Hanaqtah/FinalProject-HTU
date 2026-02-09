@@ -1,10 +1,10 @@
 ## Project Quality Assurance: Multi-Platform Testing & Automation
 
-## Project Overview
+## Overview
 
 This project presents a comprehensive **end-to-end software testing lifecycle** applied to demonstrates advanced QA engineering practices starting from manual exploratory testing and progressing into UI automation, API validation, performance modeling, and CI/CD-ready execution.
 
-## Project Objective
+## Objective
 
 The primary objective is to validate system correctness, reliability, scalability, and maintainability using industry-standard tools.
 
