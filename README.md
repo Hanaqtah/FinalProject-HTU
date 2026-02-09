@@ -114,8 +114,8 @@ All testing evidence is stored for traceability:
 | Layer                  | Tools & Frameworks                              |
 |------------------------|-----------------------------------------------|
 | Manual Testing         | Exploratory & Functional Testing              |
-| Web Automation         | Selenium WebDriver + TestNG (Java)           |
-| Mobile Automation      | Appium + WebdriverIO (JavaScript)            |
+| Web Automation         | Selenium WebDriver + TestNG           |
+| Mobile Automation      | Appium + WebdriverIO            |
 | API Testing            | Postman & Newman CLI                           |
 | Performance Testing    | k6 (Smoke & Load)                              |
 | CI/CD                  | GitHub Actions / Self-Hosted Runner           |
