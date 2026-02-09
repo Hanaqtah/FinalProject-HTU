@@ -1,4 +1,4 @@
-## Mobile Automation - HyperMax Mobile Testing
+## Mobile Automation - HyperMax Application
 
 ## Project Overview
 
