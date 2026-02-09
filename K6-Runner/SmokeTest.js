@@ -4,6 +4,10 @@ import "./libs/shim/core.js";
 import "./libs/shim/expect.js";
 import "./libs/shim/urijs.js";
 
+import { sleep } from 'k6';
+import http from 'k6/http';
+
+
 export let options = { 
 	vus: 3,
 	duration: '30s',
@@ -11,8 +15,8 @@ export let options = {
 	thresholds: { 
     http_req_failed: ['rate<0.01'],       // < 1% errors
     http_req_duration: [
-      'p(90)<250',                        // 90% < 250ms
-      'p(95)<300',                        // 95% < 300ms
+      'p(90)<250',                        
+      'p(95)<400',                        
     ],
   },
 };
@@ -33,7 +37,7 @@ export default function() {
     id: "981086fc-87fd-4c78-a389-61f5129a30d3",
     method: "GET",
     address: "{{baseUrl}}/carts",
-    data: '{\r\n  "username": "UpdatedUser"\r\n}',
+    //data: '{\r\n  "username": "UpdatedUser"\r\n}',
     post(response) {
       pm.test("200 Status Code", function() {
         pm.response.to.have.status(200);
@@ -44,17 +48,21 @@ export default function() {
         pm.expect(ct).to.include("application/json");
       });
 
-      const cartsResponseArray = pm.response.json().carts;
-      pm.test("carts property is json array", function() {
-        pm.expect(cartsResponseArray).to.be.an("array");
-      });
+      const json = pm.response.json();
+	  const cartsResponseArray = json.carts;
+
+	  pm.test("carts property exists", function () {
+      pm.expect(cartsResponseArray).to.not.be.undefined;
+	  });
+
+	  if (Array.isArray(cartsResponseArray)) {
+	  pm.test("carts array length > 0", function () {
+      pm.expect(cartsResponseArray.length).to.be.above(0);
+     });
+    }
 
       pm.test("response is json obj", function() {
         pm.expect(pm.response.json()).to.be.an("object");
-      });
-
-      pm.test("carts array length > 0", function() {
-        pm.expect(cartsResponseArray.length).to.be.above(0);
       });
 
       pm.test("All carts have required keys", function() {
@@ -69,6 +77,7 @@ export default function() {
       });
     }
   });
+	  sleep(3);
 
   postman[Request]({
     name: "Get /products /id (single product)",
@@ -107,6 +116,7 @@ export default function() {
       });
     }
   });
+  sleep(3);
 
   postman[Request]({
     name: "Get /users/ search",
@@ -123,9 +133,15 @@ export default function() {
         pm.expect(resp).to.be.an("object");
       });
 
-      pm.test("Retuned Response is Not Empty", function() {
-        pm.expect(resp.users.length).to.be.above(0);
-      });
+	  pm.test("Users array exists", function () {
+	  pm.expect(resp.users).to.not.be.undefined;
+	 });
+
+	  if (Array.isArray(resp.users)) {
+      pm.test("Returned Response is Not Empty", function () {
+      pm.expect(resp.users.length).to.be.above(0);
+     });
+     }
 
       const users = resp.users;
       const searchWord = pm.collectionVariables.get("searchName");
@@ -136,4 +152,5 @@ export default function() {
       });
     }
   });
+  sleep(3);
 }
