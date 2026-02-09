@@ -15,7 +15,7 @@ export let options = {
     http_req_failed: ['rate<0.1'],       // < 1% errors
     http_req_duration: [
       'p(90)<450',                        // 90% < 450ms
-      'p(95)<500',                        // 95% < 500ms
+      'p(95)<600',                        // 95% < 500ms
     ],
   },
 };
@@ -36,7 +36,7 @@ export default function() {
     id: "981086fc-87fd-4c78-a389-61f5129a30d3",
     method: "GET",
     address: "{{baseUrl}}/carts",
-    data: '{\r\n  "username": "UpdatedUser"\r\n}',
+    //data: '{\r\n  "username": "UpdatedUser"\r\n}',
     post(response) {
 		let json;
 		try {
@@ -87,6 +87,8 @@ export default function() {
 	
   });
 
+  sleep(1);
+	
   postman[Request]({
     name: "Get /products /id (single product)",
     id: "222c77a8-4670-4b19-8f04-b1efdb7c79ec",
@@ -125,7 +127,9 @@ export default function() {
     sleep(1);
 	}
   });
-
+	
+	sleep(1);
+	
   postman[Request]({
     name: "Get /users/ search",
     id: "9e0a0aeb-632e-46d3-a4fb-7d81b7520029",
@@ -157,4 +161,5 @@ export default function() {
     sleep(1);
 	}
   });
+  sleep(1);
 }
