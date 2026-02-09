@@ -129,7 +129,7 @@
             "min": 150.8406,
             "thresholds": {
                 "p(90)<450": false,
-                "p(95)<500": false
+                "p(95)<600": false
             }
         },
         "http_req_failed": {
