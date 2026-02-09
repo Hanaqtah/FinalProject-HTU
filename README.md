@@ -1,11 +1,11 @@
 # Project Quality Assurance: Multi-Platform Testing & Automation
 
 ## Overview
-This repository contains a complete end-to-end Quality Assurance (QA) project covering multiple testing layers across **Web**, **Mobile**, and **API** platforms. It demonstrates manual and automated testing, performance evaluation, and CI/CD integration.
+This repository contains a complete **end-to-end Quality Assurance (QA) project** covering multiple testing layers across **Web**, **Mobile**, and **API** platforms. It demonstrates manual and automated testing, performance evaluation, and CI/CD integration.
 
 
 ## Objective
-Validate system correctness, reliability, scalability, and maintainability using industry-standard QA tools and practices.
+It aims to validate system correctness, reliability, scalability, and maintainability using industry-standard QA tools and practices.
 
 
 ## Project Scope
@@ -67,8 +67,9 @@ newman run DummyJasonFinalProject.postman_collection.json -e DummyJsonEnv.postma
 
 
 ## How to Run Performance Tests (k6)
-1. Navigate to the `performance-tests` directory.  
-2. Run the smoke or load test:
+1. Navigate to the directory of k6 files.
+2. open command line terminal.
+3. Run the smoke or load test:
 ```
 k6 run SmokeTest.js
 k6 run LoadTest.js
@@ -125,7 +126,7 @@ To maintain a clean and executable environment, the project is structured across
 
 - **main:** Core files for CI/CD execution (k6 smoke test script, Postman collection & environment).  
 - **Feature / Specialized Branches:**  
-  - `Test-Documentation` – Full Test Plan  
+  - `Test-Plan` – Full Test Plan  
   - `TestCases-Report` – Manual Test Cases & Screenshots  
   - `Bug-Reports` – All identified bugs  
   - `Selenium-Automation` – Web UI automation framework  
