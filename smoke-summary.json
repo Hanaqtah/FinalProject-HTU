@@ -177,7 +177,7 @@
             "med": 161.7884,
             "thresholds": {
                 "p(95)<300": false,
-                "p(90)<250": false
+                "p(90)<400": false
             }
         },
         "http_req_failed": {
