@@ -176,8 +176,8 @@
             "min": 149.4503,
             "med": 161.7884,
             "thresholds": {
-                "p(95)<300": false,
-                "p(90)<400": false
+                "p(95)<250": false,
+                "p(90)<300": false
             }
         },
         "http_req_failed": {
