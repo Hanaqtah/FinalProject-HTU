@@ -76,7 +76,6 @@ export default function() {
         });
       });
     }
-	  sleep(1);
   });
 	  sleep(3);
 
@@ -116,7 +115,6 @@ export default function() {
         pm.expect(resp.id).to.be.equal(ExpectedID);
       });
     }
-	  sleep(1);
   });
   sleep(3);
 
@@ -153,7 +151,6 @@ export default function() {
         });
       });
     }
-	  sleep(1);
   });
   sleep(3);
 }
