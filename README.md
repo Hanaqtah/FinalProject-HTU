@@ -1,4 +1,4 @@
-## Appium Automation - HyperMax Mobile Testing
+## Mobile Automation - HyperMax Mobile Testing
 
 ## Project Overview
 
