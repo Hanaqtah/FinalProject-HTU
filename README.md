@@ -1,4 +1,4 @@
-Selenium Automation Final Project – SauceDemo
+Web Automation Project – SauceDemo
 ========================================
 
 Project Overview
